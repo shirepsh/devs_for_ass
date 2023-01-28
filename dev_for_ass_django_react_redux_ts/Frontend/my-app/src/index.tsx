@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import App from "./App";
-import "./index.css";
+import "./bootstrap.min.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Developer } from "./components/DevelopersProfile/Developer";
@@ -19,6 +19,7 @@ import EditAssProfile from "./components/AssociationsProfile/EditAssProfile";
 import AssPersonalProfile from "./components/AssociationsProfile/AssPersonalProfile";
 import { Association } from "./components/AssociationsProfile/Association";
 import AboutUs from "./components/Other/AboutUs";
+import QandA from "./components/Other/QandA";
 
 const container = document.getElementById('root')!;
 const root = createRoot(container)
@@ -27,7 +28,6 @@ const root = createRoot(container)
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-
       <Provider store={store}>
         <Routes>
 
@@ -36,13 +36,13 @@ root.render(
             <Route path="/homePage" element={<HomePage/>} />
             <Route path="/AboutUs" element={<AboutUs/>} />
             <Route path="/login" element={<Login />} />
+            <Route path="/QandA" element={<QandA />} />
 
             <Route path="/devReg" element={<DevReg />} />
             <Route path="/developer" element={<Developer />} />
             <Route path="/devPersonalProfile" element={<DevPersonalProfile/>} />
             <Route path="/addDev" element={<AddDeveloper />} />
             <Route path="/editDevProfile" element={<EditDevProfile />} />
-            
 
             <Route path="/AssReg" element={<AssReg />} />
             <Route path="/Association" element={<Association />} />

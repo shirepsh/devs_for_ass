@@ -18,12 +18,14 @@ function App() {
   return (
     <div className="App">
 
-      
+    
     <Navbar /> 
     {/* Main content start */}
      <Outlet /> 
     {/* Main content end */}
      <Footer/>
+     
+
   </div>
   );
 }
