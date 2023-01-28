@@ -1,0 +1,32 @@
+// ASS API functions ==> add function is in the component herself
+
+import axios from 'axios'
+import { MYSERVER } from '../../../env';
+import Post from '../../../models/Post';
+
+// get all posts 
+export function getAllPosts() {
+  return new Promise<{ data: Post[]}>((resolve) => 
+  axios.get(MYSERVER + "get_all_posts").then(res => resolve({ data: res.data })))}
+
+// get your posts for association 
+export function getMyAssPosts(token:string) {
+  const config = {
+    headers: {
+        Authorization: `Bearer ${token}`,
+    }
+  }; 
+  return new Promise<{ data: Post[]}>((resolve) => 
+  axios.get(MYSERVER + "get_my_posts", config).then(res => resolve({ data: res.data })))}
+
+// delete post
+export function delPost(token:string) {
+  const config = {
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+  }; 
+  return new Promise<{ data: number}>((resolve) => 
+  axios.delete(MYSERVER + "post", config ).then(res => resolve({ data: res.data })))}
+
+// add function in the component herself

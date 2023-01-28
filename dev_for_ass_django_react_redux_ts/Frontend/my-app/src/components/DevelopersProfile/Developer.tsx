@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Col, Row } from 'react-bootstrap';
 import Card from 'react-bootstrap/esm/Card';
 import ListGroup from 'react-bootstrap/esm/ListGroup';
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
@@ -18,24 +19,32 @@ export const Developer = () => {
     <div><h4>our developers:</h4>
       we have {devs.length} great developers 
       
-      {devs.map((dev : any, index:any) => 
-      <div key={index}>
-      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={"http://127.0.0.1:8000" + dev.profile_picture} alt="" />
-      <Card.Body>
-        <Card.Title> {dev.full_name}</Card.Title>
-        <Card.Text>
-        {dev.description}
-        </Card.Text>
-      </Card.Body>
-      <ListGroup className="list-group-flush">
-        <ListGroup.Item>{dev.email_from_reg} , {dev.contact_phone_number}</ListGroup.Item>
-        <ListGroup.Item> years of experience : {dev.years_of_experience}</ListGroup.Item>
-        <ListGroup.Item><Card.Link href={dev.linkdin_url}>Linkdin</Card.Link><Card.Link href={dev.GitHub_url}>GitHub</Card.Link></ListGroup.Item>
-      </ListGroup>
-    </Card>
-        
-        </div>)}
+      <Row lg={4}>
+      {devs.map((dev: any, index: any) =>
+        <div key={index}>
+          <div >
+          <Col className="d-flex">   
+        <Card style={{ width: '18rem' }}>
+        <Card.Img variant="top" src={"http://127.0.0.1:8000" + dev.profile_picture} alt="" />
+        <Card.Body>
+          <Card.Title style={{color:'blue'}}> {dev.full_name}</Card.Title>
+          <Card.Text>
+          {dev.description}
+          </Card.Text>
+        </Card.Body>
+        <ListGroup className="list-group-flush">
+          <ListGroup.Item>{dev.email_from_reg} <br/> {dev.contact_phone_number}</ListGroup.Item>
+          <ListGroup.Item> years of experience : {dev.years_of_experience}</ListGroup.Item>
+          <ListGroup.Item>{dev.location} </ListGroup.Item>
+          
+        </ListGroup>
+      </Card>
+      </Col>
+      </div>
+          
+          </div>)}
+
+          </Row>      
     </div>
   );
 }

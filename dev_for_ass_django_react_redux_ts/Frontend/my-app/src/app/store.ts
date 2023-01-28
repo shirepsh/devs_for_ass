@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import associationSlice from '../slicers/developer/Association/associationSlice';
 import developerSlice from '../slicers/developer/developerSlice';
+import postsSlice  from '../slicers/developer/posts/postsSlice';
 
 export const store = configureStore({
   reducer: {
     developer: developerSlice,
-    association:associationSlice
+    association:associationSlice,
+    post:postsSlice
   },
 });
 

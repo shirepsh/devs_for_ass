@@ -24,11 +24,18 @@ const Navbar = () => {
                 <li><Link to="/homePage">home page</Link></li>
                 <li><Link to="/developer">our developers</Link></li>
                 <li><Link to="/Association">our Associations</Link></li>
-                <li><Link to="/AboutUs">about us</Link></li>
 
+                {/* cheng between login to logout */}
                 <li style={{ backgroundColor: "green", float: "right" }}> {isLogged  ? <div> <button  className="btn btn-outline-success" style = {{border: 'none', color:'white', height:'52px'}}  onClick={() => dispatch(logOutAsync())}>LOGOUT</button></div> : <Link to="/Login">login/logout</Link>}</li>
 
+                {/* presentation the personal profile respectively */}
                 <li style={{ backgroundColor: "red", float: "right" }}> {isLogged && loggedTemp === "dev" ? <Link to="/devPersonalProfile">your profile</Link> : ""} {isLogged && loggedTemp === "ass" ? <Link to="/AssPersonalProfile">your profile</Link> : "" } </li>
+
+                {/* presentation the personal posts */}
+                <li style={{ backgroundColor: "red", float: "right" }}> {isLogged && loggedTemp === "ass" ? <Link to="/MyPosts">my posts</Link> : "" } </li>
+
+                {/* presentation the posts just to who did login*/}
+                <li> {isLogged && loggedTemp === "dev" ? <Link to="/Posts">find your volunteering</Link> : ""} {isLogged && loggedTemp === "ass" ? <Link to="/Posts">posts</Link> : "" } </li>
 
             </ul> 
     

@@ -20,6 +20,8 @@ import AssPersonalProfile from "./components/AssociationsProfile/AssPersonalProf
 import { Association } from "./components/AssociationsProfile/Association";
 import AboutUs from "./components/Other/AboutUs";
 import QandA from "./components/Other/QandA";
+import Posts from "./components/AssociationPosts/Posts";
+import MyPosts from "./components/AssociationPosts/MyPosts";
 
 const container = document.getElementById('root')!;
 const root = createRoot(container)
@@ -49,6 +51,9 @@ root.render(
             <Route path="/AssPersonalProfile" element={<AssPersonalProfile/>} />
             <Route path="/addAss" element={<AddAssProfile />} />
             <Route path="/editAssProfile" element={<EditAssProfile />} />
+
+            <Route path="/Posts" element={<Posts />} />
+            <Route path="/MyPosts" element={<MyPosts />} />
       
           </Route>
         </Routes>
