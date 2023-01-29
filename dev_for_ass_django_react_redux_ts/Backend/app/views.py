@@ -18,21 +18,10 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token = super().get_token(user)
         # Add custom claims
         token['username'] = user.username
-        return token 
+        return token
  
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
-
-# class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-#     @classmethod
-#     def get_token(cls, user):
-#         token = super().get_token(user)
-#         # Add custom claims
-#         token['email'] = user.email
-#         return token
- 
-# class MyTokenObtainPairView(TokenObtainPairView):
-#     serializer_class = MyTokenObtainPairSerializer
 
 #########################################################################################################################
 # ///////////////// developer registered 
@@ -80,6 +69,22 @@ def type_logged(request):
     elif request.user.is_association:
         return Response("ass")
 
+###########################################################################################################
+#//////////////// get custom user logein - email (for create profile)
+##########################################################################################################
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getEmail(request):
+    if request.method == "GET":
+        try:
+            # user that coneccted == the email of the user are connected (by email str)
+            user= request.user
+            print(user)
+            serializer = CustomUserSerializer(CustomUser.objects.get(email = user))
+        except:
+                return Response(status=status.HTTP_400_BAD_REQUEST, data="not found")
+        return Response(status=status.HTTP_200_OK, data=serializer.data['email'])
+    
 ###################################################################################################################
 # ////////////// create profile as developer - full crud
 ##################################################################################################################
@@ -246,26 +251,16 @@ def posts(request,_id=-1):
             print('error',api_serializer.errors)
             return Response(api_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
-    # # delete post
-    # elif request.method == "DELETE":
-    #     # the dev that coneect (by email str)
-    #     post_2_del = request.user
-    #     print(request.user)
-    #     try:
-    #         dev = Developer_details.objects.get(email_from_reg=dev_2_del)
-    #         dev.delete()
-    #     except:
-    #         return Response(status=status.HTTP_400_BAD_REQUEST, data="dev not found")
-    #     return Response(status=status.HTTP_200_OK, data="dev delete")
+    # delete post
+    elif request.method == "DELETE":
+        # the dev that coneect (by email str)
+        post_2_del = request.user
+        print(request.user)
+        try:
+            dev = Posts_of_the_associations.objects.get(email_from_reg=post_2_del)
+            dev.delete()
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST, data="dev not found")
+        return Response(status=status.HTTP_200_OK, data="dev delete")
 
-    # # update by id
-    # elif request.method == "PUT":
-    #     # the dev that coneect (by email str)
-    #     dev_2_upd = request.user
-    #     try:
-    #         ser = DeveloperDetailsSerializer(data=request.data)
-    #         old_dev = Developer_details.objects.get(email_from_reg=dev_2_upd)
-    #         res = ser.update(old_dev, request.data)
-    #         return HttpResponse(res, status=status.HTTP_200_OK)
-    #     except:
-    #         return Response(status=status.HTTP_400_BAD_REQUEST, data="dev not found")
+    

@@ -2,19 +2,29 @@
 import { Outlet } from "react-router-dom";
 import Navbar from './components/Other/Navbar';
 import './App.css';
-import { getToken } from "./slicers/developer/developerSlice";
-import { useAppDispatch } from "./app/hooks";
+import {  checkTypeAsync, getEmailAsync, getToken, selectToken } from "./slicers/developer/developerSlice";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { useEffect } from "react";
 import Footer from "./components/Other/Footer";
+import { selectAssEmailLogged } from "./slicers/developer/Association/associationSlice";
 
 function App() {
 
   const dispatch = useAppDispatch()
+  const email = useAppSelector(selectAssEmailLogged)
+  const token = useAppSelector(selectToken)
   
     useEffect(() => {
       dispatch(getToken())
       }, [dispatch])
+
+      useEffect(() => {
+        (dispatch(getEmailAsync(token)))
+        console.log(email)
+      }, [dispatch, token])
     
+      useEffect(() => { dispatch(checkTypeAsync(token)) }, [dispatch, token])
+      
   return (
     <div className="App">
 

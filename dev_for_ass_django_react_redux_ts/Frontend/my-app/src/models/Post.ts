@@ -1,11 +1,12 @@
 export default class Post{
     id?:number
     email_from_reg?: string = "" 
-    profile_picture?: File | undefined
+    profile_picture?: string = ""
     ass_name?: string = "" 
+
     post_title?:string = ""
     post_description?:string = "" 
-    photo?: File | undefined 
+    photo?: string = ""
     contact_phone_number?: string = ""
     handleImageUpload?: (() => Promise<void>) | undefined;
 }

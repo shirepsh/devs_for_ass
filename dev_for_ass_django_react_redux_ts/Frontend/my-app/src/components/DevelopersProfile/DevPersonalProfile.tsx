@@ -1,27 +1,30 @@
 import React, { useEffect } from 'react'
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { delDevAsync, selectLoggedDev, getMyDevProfileAsync, selectToken } from '../../slicers/developer/developerSlice'
+import { delDevAsync, selectLoggedDev, getMyDevProfileAsync, selectToken, selectIsLogged } from '../../slicers/developer/developerSlice'
 import { MDBContainer } from "mdb-react-ui-kit";
 
 
 function DevPersonalProfile() {
 
-
     const dispatch = useAppDispatch()
 
     const tempDev = useAppSelector(selectLoggedDev)
     const token = useAppSelector(selectToken)
-
+    const isLogged = useAppSelector(selectIsLogged)
+    
     useEffect(() => { dispatch(getMyDevProfileAsync(token)) }, [dispatch, token])
 
-
+    // useEffect(() => {
+    //     if(tempDev.email_from_reg === ""){dispatch(())}
+    //   }, [])
 
     return (
         <div>
             <h4> Personal Profile </h4> <br />
 
-            {tempDev.email_from_reg ?
+            {isLogged ?
+            
                 <div>
                     <MDBContainer className="my-5 d-flex flex-column justify-content-center align-items-center">
                         <img
@@ -44,7 +47,7 @@ function DevPersonalProfile() {
             </Link> :
                 <Link to="/addDev">
                     <button className="btn btn-primary">create your profile</button>
-                </Link>}
+                </Link>} 
 
 
         </div>

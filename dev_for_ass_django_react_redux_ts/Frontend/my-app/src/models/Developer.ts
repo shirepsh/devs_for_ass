@@ -1,7 +1,7 @@
 export default class Developer{
     id?:number
-    email_from_reg?: string = "" 
-    profile_picture?: File | undefined 
+    email_from_reg: string = "" 
+    profile_picture?: string = "" 
     full_name?:string = ""
     years_of_experience?:string = "" 
     description?: string = "i am a developer"

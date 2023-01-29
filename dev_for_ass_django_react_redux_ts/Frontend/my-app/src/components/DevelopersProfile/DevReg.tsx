@@ -34,10 +34,10 @@ const DevReg = () => {
             <h4 style={{textAlign: "center" , color: "violet"}}> dont have an user? sign up:</h4>
             <hr/>
             User name: <input onChange={(e) => setuname(e.target.value)} />
-            Password: <input onChange={(e) => setpassword(e.target.value)} />
+            Password: <input type="password" onChange={(e) => setpassword(e.target.value)} />
             email: <input onChange={(e) => setemail(e.target.value)} />
             <button onClick={() => dispatch(DevRegAsync({username, password, email}))}>Register</button><hr></hr>
-            {isLogged && 'thank you for sign up mr ' + username}
+            {isLogged && 'thank you for sign up' + username}
         </div>
     )
 }

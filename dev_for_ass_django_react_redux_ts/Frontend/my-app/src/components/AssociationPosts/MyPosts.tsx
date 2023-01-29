@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Card, ListGroup } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { selectLoggedAss, selectToken } from '../../slicers/developer/Association/associationSlice'
 import { selectIsLogged, selectTypeLogged } from '../../slicers/developer/developerSlice'
@@ -20,7 +21,12 @@ function MyPosts() {
 
     return (
         <div>
+
             <h4> my posts: </h4> <br />
+
+            <Link to="/AddPost">
+                <button className="btn btn-primary">create new post</button>
+            </Link>
 
         {tempAss.email_from_reg ?
 

@@ -28,22 +28,21 @@ export function checkType(token:string) {
     }}
   return new Promise<{data: string }>((resolve) => 
   axios.get(MYSERVER + "test" , config).then(res => resolve({ data: res.data })))}
+
+// get email for create profile
+export function getEmail(token:string) {
+  const config = {
+    headers: {
+        Authorization: `Bearer ${token}`,
+    }}
+  return new Promise<{data: string }>((resolve) => 
+  axios.get(MYSERVER + "getEmail" , config).then(res => resolve({ data: res.data })))}
+
   
 // get all devs 
 export function getAllDev() {
   return new Promise<{ data: Developer[]}>((resolve) => 
   axios.get(MYSERVER + "get_all_dev").then(res => resolve({ data: res.data })))}
-
-// add developer func
-// export function addDev(dev: any, token:string) { 
-//   const config = {
-//     headers: {
-//         Authorization: `Bearer ${token}`,
-//         'Content-Type': 'multipart/form-data'
-//     }
-//   };
-//   return new Promise<{ data: Developer}>((resolve) => 
-//   axios.post(MYSERVER + "dev", FormData,  config).then(res => resolve({ data: res.data })))}
 
 // get your dev profile 
 export function getMyDevProfile(token:string) {

@@ -1,10 +1,11 @@
 // this sclier is developer & authentication 
 // add function is in the component herself
 
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
+import { createSecureContext } from 'tls';
 import { RootState } from '../../app/store';
 import Developer from '../../models/Developer';
-import {  checkType, delDev, DevReg, EditDevProfile, getAllDev, getMyDevProfile, login, logout } from './developerAPI';
+import {  checkType, delDev, DevReg, EditDevProfile, getAllDev, getEmail, getMyDevProfile, login, logout } from './developerAPI';
 
 
 // #######################################################################################################################
@@ -16,6 +17,7 @@ export interface DeveloperState {
   loggedDev: Developer
   IsLogged: Boolean
   checkTypeLogged : string
+  emailLogged: string
 }
 
 // #####################################################################################################################
@@ -24,9 +26,10 @@ const initialState: DeveloperState = {
   // developers : [{full_name:"shani epshtain", email_from_reg:"shani@a.com", contact_phone_number:"",description:"",GitHub_url:"", linkdin_url:"",profile_picture:"",years_of_experience:0}]
   developers: [],
   token : " ", 
-  loggedDev: {},
+  loggedDev: {email_from_reg:""},
   IsLogged: false,
-  checkTypeLogged : ""
+  checkTypeLogged : "",
+  emailLogged: ""
 };
 // #####################################################################################################################
 // create the async functions
@@ -60,16 +63,13 @@ export const checkTypeAsync = createAsyncThunk(
     return response.data;
   });
 
-// export const addDevAsync = createAsyncThunk(
-//   'developer/addDev',
-//   async (data: {newDev: any , token:string} ) => {
-//     // const state = developerAPI.getState() as RootState;
-//     // console.log(state)
-//     // let token =JSON.parse(localStorage.getItem("token") || "") 
-//     // console.log(token)
-//     const response = await addDev(data.newDev, data.token);
-//     return response.data;
-//   });
+export const getEmailAsync = createAsyncThunk(
+  'developer/getEmail',
+  async (token: string) => {
+    const response = await getEmail(token);
+    console.log(response.data)
+    return response.data;
+  });
 
 export const getAllDevAsync = createAsyncThunk(
   'developer/getAllDev',
@@ -120,17 +120,18 @@ export const developerSlice = createSlice({
       state.token = action.payload.access
       localStorage.setItem("token", JSON.stringify(state.token))
       state.IsLogged = true
+      state.loggedDev = {email_from_reg: ""}
     }).addCase(logOutAsync.fulfilled, (state, action) => {
-      console.log(action.payload)
       state.token = ""
-      localStorage.setItem("token", JSON.stringify(state.token))
+      localStorage.clear()
       state.IsLogged = false
-    // }).addCase(addDevAsync.fulfilled, (state, action) => {
-    //   console.log(action.payload)
-    //   state.developers.push(action.payload)
+      state.loggedDev = {email_from_reg:""}
     }).addCase(checkTypeAsync.fulfilled, (state, action) => {
       console.log(action.payload)
       state.checkTypeLogged = action.payload
+    }).addCase(getEmailAsync.fulfilled, (state, action) => {
+      state.emailLogged = action.payload
+      console.log(current(state))
     }).addCase(getAllDevAsync.fulfilled, (state, action) => {
       console.log(action.payload)
       state.developers = action.payload
@@ -140,7 +141,7 @@ export const developerSlice = createSlice({
     }).addCase(delDevAsync.fulfilled, (state, action) => {
       console.log(action.payload)
       state.developers.filter((x) => x.id !== action.payload)
-      state.loggedDev = {}
+      state.loggedDev = {email_from_reg:""}
     }).addCase(EditDevAsync.fulfilled, (state, action) => {
       console.log(action.payload)
       state.developers.filter((x) => x.email_from_reg !== action.payload.email_from_reg) 
@@ -157,6 +158,7 @@ export const selectToken = (state: RootState) => state.developer.token;
 export const selectLoggedDev = (state: RootState) => state.developer.loggedDev;
 export const selectIsLogged = (state: RootState) => state.developer.IsLogged;
 export const selectTypeLogged = (state: RootState) => state.developer.checkTypeLogged;
+export const selectEmailLogged = (state: RootState) => state.developer.emailLogged;
 
 
 export default developerSlice.reducer;

@@ -7,6 +7,7 @@ urlpatterns = [
     path('ass_register', views.ass_register),
     path('login', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('test', views.type_logged),
+    path('getEmail', views.getEmail),
     path('logout', auth_views.LogoutView.as_view(), name='logout'),
 
     path('get_all_dev', views.get_all_developer_profile),

@@ -41,7 +41,7 @@ class Association_details(models.Model):
 
 # posts of associations table
 class Posts_of_the_associations(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True )
+    user = models.ForeignKey(Association_details, on_delete=models.SET_NULL, null=True )
     email_from_reg = models.CharField(max_length = 255, null = False, blank = False)
     post_title = models.CharField(max_length = 255, null = True, blank = True)
     post_description = models.CharField(max_length = 255, null = True, blank = True)

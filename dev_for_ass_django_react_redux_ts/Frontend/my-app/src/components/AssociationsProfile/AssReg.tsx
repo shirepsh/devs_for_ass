@@ -35,7 +35,7 @@ const AssReg = () => {
             <h4 style={{textAlign: "center" , color: "violet"}}> dont have an user? sign up:</h4>
             <hr/>
             User name: <input onChange={(e) => setuname(e.target.value)} />
-            Password: <input onChange={(e) => setpassword(e.target.value)} />
+            Password: <input type="password" onChange={(e) => setpassword(e.target.value)} />
             email: <input onChange={(e) => setemail(e.target.value)} />
             <button onClick={() => dispatch(AssRegAsync({username, password, email}))}>Register</button><hr></hr>
             {IsAssLogged && 'thank you for sign up association' + username}

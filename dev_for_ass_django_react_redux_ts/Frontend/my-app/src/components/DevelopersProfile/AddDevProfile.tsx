@@ -1,12 +1,13 @@
 import axios from 'axios'
-import React, { useState  } from 'react'
-import { useAppSelector } from '../../app/hooks'
+import React, {  useState  } from 'react'
+import {  useAppSelector } from '../../app/hooks'
 import { MYSERVER } from '../../env'
-import { selectToken} from '../../slicers/developer/developerSlice'
+import {  selectEmailLogged, selectToken} from '../../slicers/developer/developerSlice'
 
 function AddDeveloper() {
 
   const token = useAppSelector(selectToken)
+  const email = useAppSelector(selectEmailLogged)
 
   const config = {
     headers: {
@@ -15,14 +16,17 @@ function AddDeveloper() {
     }
 };
 
+
+    // UNCHANGEABLE
+    const [email_from_reg, setEmail] = useState(email)
     const [full_name, setFullname] = useState("")
     const [contact_phone_number, setContactPhoneNumber] = useState("")
-    const [email_from_reg, setEmail] = useState("")
     const [profile_picture, setProfilePicture] = useState<File | null>(null)
     const [years_of_experience, setYearsOfExperience] = useState("");
     const [description, setDescription] = useState("")
     const [linkdin_url, setLinkdinUrl] = useState("")
     const [GitHub_url, setGitHubUrl] = useState("")
+
 
     const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setFullname(event.target.value);
@@ -32,9 +36,9 @@ function AddDeveloper() {
       setContactPhoneNumber(event.target.value);
     };
 
-    const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setEmail(event.target.value);
-    };
+    // const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //   setEmail(event.target.value);
+    // };
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setProfilePicture(event.target.files![0]);
@@ -69,7 +73,8 @@ function AddDeveloper() {
       formData.append('linkdin_url', linkdin_url);
       formData.append('GitHub_url', GitHub_url);
 
-      const res = await axios.post(MYSERVER + "dev ", formData, config)}
+      console.log(email)
+      axios.post(MYSERVER + "dev", formData, config)}
 
   return (
     <div> 
@@ -77,7 +82,6 @@ function AddDeveloper() {
 
     <form onSubmit={handleImageUpload}>   
     your full name: <input type="text"  placeholder="full name" value={full_name} onChange={handleNameChange}></input> <br/>
-    email from register:  <input type="text"  placeholder="email from reg" value={email_from_reg} onChange={handleEmailChange}></input> <br/>
     phone number:  <input type="text"  placeholder="contact phone number" value={contact_phone_number} onChange={handlePhoneChange}></input> <br/>
     profile picture:  <input type="file" onChange={handleImageChange}></input> <br/>
     description:  <input type="text"  placeholder="description" value={description} onChange={handleDescChange}></input> <br/>
@@ -85,8 +89,8 @@ function AddDeveloper() {
     gitHub url:  <input type="text"  placeholder="linkdin url" value={linkdin_url} onChange={handleLinkDinChange}></input> <br/>
     linkdin url:  <input type="text"  placeholder="GitHub url" value={GitHub_url} onChange={handleGitHubChange}></input> <br/>
 
-    <button onClick={()=>console.log(token)}>stam</button>
-    <button type="submit">Upload Image</button>  <br/>
+    {/* <button onClick={()=>console.log(token)}>stam</button> */}
+    <button type="submit">send</button>  <br/>
       </form>
 
     </div>

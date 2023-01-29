@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { loginAsync, selectIsLogged } from "../slicers/developer/developerSlice";
+import { getEmailAsync, loginAsync, selectIsLogged } from "../slicers/developer/developerSlice";
 import { Form, Button } from 'react-bootstrap'
+import { selectToken } from "../slicers/developer/Association/associationSlice";
 
 
 
@@ -16,6 +17,9 @@ const Login = () => {
     const [username, setuname] = useState("")
     const [password, setpassword] = useState("")
 
+    const token = useAppSelector(selectToken)
+
+    if (isLogged){ dispatch(getEmailAsync(token))}
 
     return (
         <div>

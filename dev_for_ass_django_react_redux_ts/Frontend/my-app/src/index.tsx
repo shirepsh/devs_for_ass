@@ -22,6 +22,7 @@ import AboutUs from "./components/Other/AboutUs";
 import QandA from "./components/Other/QandA";
 import Posts from "./components/AssociationPosts/Posts";
 import MyPosts from "./components/AssociationPosts/MyPosts";
+import AddPost from "./components/AssociationPosts/AddPost";
 
 const container = document.getElementById('root')!;
 const root = createRoot(container)
@@ -54,6 +55,7 @@ root.render(
 
             <Route path="/Posts" element={<Posts />} />
             <Route path="/MyPosts" element={<MyPosts />} />
+            <Route path="/AddPost" element={<AddPost />} />
       
           </Route>
         </Routes>

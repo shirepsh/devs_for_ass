@@ -1,11 +1,11 @@
 // this sclier is Associations 
 // add function is in the component herself
 
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
 import Association from '../../../models/Association';
 import { RootState } from '../../../app/store';
 import { AssReg , delAss, EditAssProfile, getAllAss, getMyAssProfile} from './associationAPI';
-import { loginAsync, logOutAsync } from '../developerSlice';
+import { getEmailAsync, loginAsync, logOutAsync } from '../developerSlice';
 
 // #######################################################################################################################
 // define here Association as a Association list
@@ -14,6 +14,7 @@ export interface AssociationState {
   token : string 
   loggedAss: Association
   IsAssLogged: Boolean
+  emailLogged: string
 }
 
 // #####################################################################################################################
@@ -22,8 +23,10 @@ const initialState: AssociationState = {
   Associations: [],
   token : " ", 
 //   for introduce one profile
-  loggedAss: {},
-  IsAssLogged: false
+  loggedAss: {email_from_reg:""},
+  // loggedAss: {email_from_reg : "", profile_picture: "", association_name:"", description:"", contact_info:"", location:""},
+  IsAssLogged: false,
+  emailLogged: ""
 };
 // #####################################################################################################################
 // create the async functions
@@ -82,11 +85,16 @@ export const associationSlice = createSlice({
       state.token = action.payload.access
       localStorage.setItem("token", JSON.stringify(state.token))
       state.IsAssLogged = true
+      state.loggedAss = {email_from_reg: ""}
     }).addCase(logOutAsync.fulfilled, (state, action) => {
-      console.log(action.payload)
       state.token = ""
       localStorage.setItem("token", JSON.stringify(state.token))
       state.IsAssLogged = false
+      state.loggedAss = {}
+      state.loggedAss = {email_from_reg: ""}
+    }).addCase(getEmailAsync.fulfilled, (state, action) => {
+      state.emailLogged = action.payload
+      console.log(current(state))
     }).addCase(getAllAssAsync.fulfilled, (state, action) => {
       console.log(action.payload)
       state.Associations = action.payload
@@ -112,4 +120,5 @@ export const selectAssociation = (state: RootState) => state.association.Associa
 export const selectToken = (state: RootState) => state.association.token;
 export const selectLoggedAss = (state: RootState) => state.association.loggedAss;
 export const selectIsAssLogged = (state: RootState) => state.association.IsAssLogged;
+export const selectAssEmailLogged = (state: RootState) => state.association.emailLogged;
 export default associationSlice.reducer;
