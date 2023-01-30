@@ -3,20 +3,28 @@ import { Card, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { selectLoggedAss, selectToken } from '../../slicers/developer/Association/associationSlice'
-import { selectIsLogged, selectTypeLogged } from '../../slicers/developer/developerSlice'
+import { selectIsLogged } from '../../slicers/developer/developerSlice'
 import { delPostAsync, getMyAssPostsAsync, selectLoggedAssPosts } from '../../slicers/developer/posts/postsSlice'
+import { Col, Row } from 'react-bootstrap';
 
 function MyPosts() {
 
-    
     const dispatch = useAppDispatch()
 
     const tempAssPosts = useAppSelector(selectLoggedAssPosts)
     const token = useAppSelector(selectToken)
 
-    const tempAss = useAppSelector(selectLoggedAss)
+    const isLogged = useAppSelector(selectIsLogged)
 
-    useEffect(() => { dispatch(getMyAssPostsAsync(token)) }, [dispatch, token])
+    // const doSome = () => {dispatch(getMyAssPostsAsync(token))}
+
+    // useEffect(() => {dispatch(getMyAssPostsAsync(token)), console.log("first")} , [dispatch, token])
+
+    useEffect(() => {
+      console.log("tempp", tempAssPosts);
+      dispatch(getMyAssPostsAsync(token));
+    }, [!tempAssPosts, token])
+    
     
 
     return (
@@ -28,31 +36,34 @@ function MyPosts() {
                 <button className="btn btn-primary">create new post</button>
             </Link>
 
-        {tempAss.email_from_reg ?
-
-        tempAssPosts.map((onePost: any, index: any) =>
+        <Row lg={4}>
+        {tempAssPosts.map((onePost: any, index: any) =>
           <div key={index}>
-            <div className="row row-cols-1 row-cols-md-2 g-4">
+            <div>
+              <Col className="d-flex">   
           <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src={"http://127.0.0.1:8000" + onePost.profile_picture} alt="" />
           <Card.Body>
-            <Card.Title> {onePost.ass_name}</Card.Title>
+            <Card.Title> {onePost.association_name}</Card.Title>
             <Card.Text>
             {onePost.post_title}
             {onePost.post_description}
             </Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
-            <ListGroup.Item>{onePost.email_from_reg} , {onePost.contact_phone_number}</ListGroup.Item>
+            <ListGroup.Item>{onePost.contact_phone_number}</ListGroup.Item>
             <ListGroup.Item><Card.Img variant="top" src={"http://127.0.0.1:8000" + onePost.photo} alt="" /> </ListGroup.Item>
-            <ListGroup.Item><button onClick={() => dispatch(delPostAsync(token))}>delete this post</button></ListGroup.Item>
+            <ListGroup.Item><button onClick={() => dispatch(delPostAsync({token, id: onePost.id}))}>delete this post</button></ListGroup.Item>
             
           </ListGroup>
-        </Card>  
+        </Card> 
+        </Col> 
         </div>
-       </div> ) : ""}
 
-       </div>) }
+       </div> )} 
+       </Row>
+
+       </div>) 
+       }
 
 
 export default MyPosts

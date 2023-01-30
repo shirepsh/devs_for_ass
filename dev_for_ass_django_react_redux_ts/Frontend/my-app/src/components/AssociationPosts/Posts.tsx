@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Card, ListGroup } from 'react-bootstrap'
 import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import { selectPost, getAllPostsAsync } from '../../slicers/developer/posts/postsSlice'
+import { Col, Row } from 'react-bootstrap';
 
 function Posts() {
 
@@ -13,27 +14,31 @@ function Posts() {
     return (
       <div><h4>All posts:</h4>
   
+        <Row lg={4}>
         {posts.map((onePost: any, index: any) =>
           <div key={index}>
-            <div className="row row-cols-1 row-cols-md-2 g-4">
+            <div >
+            <Col className="d-flex">   
           <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src={"http://127.0.0.1:8000" + onePost.profile_picture} alt="" />
           <Card.Body>
-            <Card.Title> {onePost.ass_name}</Card.Title>
+            <Card.Title style={{color:'blue'}}> {onePost.association_name}</Card.Title>
             <Card.Text>
-            {onePost.post_title}
+            {onePost.post_title} <br/>
             {onePost.post_description}
             </Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
-            <ListGroup.Item>{onePost.email_from_reg} , {onePost.contact_phone_number}</ListGroup.Item>
-            <ListGroup.Item><Card.Img variant="top" src={"http://127.0.0.1:8000" + onePost.photo} alt="" /> </ListGroup.Item>
+            <ListGroup.Item>{onePost.contact_phone_number}</ListGroup.Item>
+            {/* <Card.Img variant="top" src={"http://127.0.0.1:8000" + onePost.photo} alt="" /> */}
+            <ListGroup.Item><Card.Img variant="top" src={"http://127.0.0.1:8000" + onePost.photo} alt="" /> </ListGroup.Item> 
             
           </ListGroup>
         </Card>
+        </Col>
         </div>
             
             </div>)}
+            </Row>
           </div>)
   }
 export default Posts

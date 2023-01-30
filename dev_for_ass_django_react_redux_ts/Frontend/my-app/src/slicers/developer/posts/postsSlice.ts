@@ -2,9 +2,11 @@
 // add function is in the component herself
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { useAppSelector } from '../../../app/hooks';
 import { RootState } from '../../../app/store';
 import Post from '../../../models/Post';
 import { delPost, getAllPosts, getMyAssPosts } from './postsAPI';
+
 
 // #######################################################################################################################
 // define here Association as a Association list
@@ -38,11 +40,12 @@ export const getAllPostsAsync = createAsyncThunk(
     });
 
 export const delPostAsync = createAsyncThunk(
-    'post/delPost',
-    async (token:string) => {
-      const response = await delPost(token);
-      return response.data;
-    });
+  'post/delPost',
+  async (props: {token:string, id: number}) => {
+    console.log(props)
+    const response = await delPost(props.token, props.id);
+    return response.data;
+  });
 
 // ############################################################################################################
 // create the regular functions (not async) and settings
@@ -61,9 +64,12 @@ export const postsSlice = createSlice({
     }).addCase(getMyAssPostsAsync.fulfilled, (state, action) => {
       console.log(action.payload)
       state.loggedAssPosts = action.payload
+      // console.log(state.loggedAssPosts)
     }).addCase(delPostAsync.fulfilled, (state, action) => {
-      console.log(action.payload)
-      state.Posts.filter((x) => x.id !== action.payload)
+      console.log("ddddd", action.payload)
+      console.log(state.Posts)
+      state.Posts.filter((x) => x.id !== Number(action.payload))
+      // state.Posts = []
       state.loggedAssPosts.filter((x) => x.id !== action.payload)
     })
   }, })

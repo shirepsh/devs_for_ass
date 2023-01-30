@@ -20,6 +20,8 @@ urlpatterns = [
 
     path('get_all_posts', views.get_all_posts),
     path('get_my_posts', views.get_my_association_posts),
-    path('post', views.posts)
+    path('post', views.posts),
+    path('post/<int:_id>', views.posts)
+    
     
 ]

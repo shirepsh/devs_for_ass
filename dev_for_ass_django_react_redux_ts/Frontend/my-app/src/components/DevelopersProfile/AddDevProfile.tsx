@@ -19,6 +19,7 @@ function AddDeveloper() {
 
     // UNCHANGEABLE
     const [email_from_reg, setEmail] = useState(email)
+    
     const [full_name, setFullname] = useState("")
     const [contact_phone_number, setContactPhoneNumber] = useState("")
     const [profile_picture, setProfilePicture] = useState<File | null>(null)

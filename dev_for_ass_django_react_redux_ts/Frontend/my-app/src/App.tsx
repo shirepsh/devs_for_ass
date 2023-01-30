@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { useEffect } from "react";
 import Footer from "./components/Other/Footer";
 import { selectAssEmailLogged } from "./slicers/developer/Association/associationSlice";
+import { getMyAssPostsAsync } from "./slicers/developer/posts/postsSlice";
 
 function App() {
 
@@ -24,6 +25,8 @@ function App() {
       }, [dispatch, token])
     
       useEffect(() => { dispatch(checkTypeAsync(token)) }, [dispatch, token])
+
+      useEffect(() => {dispatch(getMyAssPostsAsync(token)) }, [dispatch, token])
       
   return (
     <div className="App">

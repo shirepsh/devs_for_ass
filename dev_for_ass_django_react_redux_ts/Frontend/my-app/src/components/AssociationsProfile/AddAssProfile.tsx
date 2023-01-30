@@ -22,7 +22,7 @@ function AddAssProfile() {
 
     const [association_name, setAssociationName] = useState("")
     const [profile_picture, setProfilePicture] = useState<File | null>(null)
-    const [contact_phone_number, setContactPhoneNumber] = useState("")
+    // const [contact_phone_number, setContactPhoneNumber] = useState("")
     const [description, setDescription] = useState("")
     const [location, setLocation] = useState("")
 
@@ -31,9 +31,9 @@ function AddAssProfile() {
       setAssociationName(event.target.value);
     };
 
-    const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setContactPhoneNumber(event.target.value);
-    };
+    // const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //   setContactPhoneNumber(event.target.value);
+    // };
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setProfilePicture(event.target.files![0]);
@@ -52,7 +52,7 @@ function AddAssProfile() {
 
       const formData = new FormData();
       formData.append('association_name', association_name);
-      formData.append('contact_phone_number', contact_phone_number);
+      // formData.append('contact_phone_number', contact_phone_number);
       formData.append('email_from_reg', email_from_reg);
       formData.append('profile_picture', profile_picture!);
       formData.append('description', description);
@@ -67,11 +67,11 @@ function AddAssProfile() {
       <h4>create your profile </h4><br/>
 
     <form onSubmit={handleImageUpload}>   
-    your association name: <input type="text"  placeholder="association name" value={association_name} onChange={handleNameChange}></input> <br/>
-    phone number:  <input type="text"  placeholder="contact phone number" value={contact_phone_number} onChange={handlePhoneChange}></input> <br/>
-    profile picture:  <input type="file" onChange={handleImageChange}></input> <br/>
+    your association name: <input type="text"  placeholder="association name" value={association_name} onChange={handleNameChange} required></input> <br/>
+    {/* phone number:  <input type="text"  placeholder="contact phone number" value={contact_phone_number} onChange={handlePhoneChange}></input> <br/> */}
+    profile picture:  <input type="file" onChange={handleImageChange}></input> <h6> we accepy only JEPG type file</h6>
     description:  <input type="text"  placeholder="description" value={description} onChange={handleDescChange}></input> <br/>
-    location:  <input type="text"  placeholder="GitHub url" value={location} onChange={handleLocationChange}></input> <br/>
+    location:  <input type="text"  placeholder="location" value={location} onChange={handleLocationChange}></input> <br/>
 
     {/* <button onClick={()=>console.log(token)}>stam</button> */}
     <button type="submit">send</button>  <br/>

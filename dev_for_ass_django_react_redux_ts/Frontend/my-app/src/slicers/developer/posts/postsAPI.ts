@@ -20,13 +20,17 @@ export function getMyAssPosts(token:string) {
   axios.get(MYSERVER + "get_my_posts", config).then(res => resolve({ data: res.data })))}
 
 // delete post
-export function delPost(token:string) {
+export function delPost(token:string, id:number) {
   const config = {
     headers: {
         Authorization: `Bearer ${token}`
     }
-  }; 
-  return new Promise<{ data: number}>((resolve) => 
-  axios.delete(MYSERVER + "post", config ).then(res => resolve({ data: res.data })))}
+  };
+  console.log('id', id) 
+  return new Promise<{ data: any}>((resolve) => 
+  axios.delete(MYSERVER + "post/" + id, config ).then(res => resolve({ data: res.data })))}
 
-// add function in the component herself
+// export function delPost(id:number) {
+//   return new Promise<{ data: number}>((resolve) => 
+//   axios.delete(MYSERVER + "post/" + id ).then(res => resolve({ data: res.data })))}
+

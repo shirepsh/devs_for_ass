@@ -2,7 +2,15 @@ import React, { useEffect } from 'react'
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { delDevAsync, selectLoggedDev, getMyDevProfileAsync, selectToken, selectIsLogged } from '../../slicers/developer/developerSlice'
-import { MDBContainer } from "mdb-react-ui-kit";
+import {
+    MDBCol,
+    MDBContainer,
+    MDBRow,
+    MDBCard,
+    MDBCardText,
+    MDBCardBody,
+    MDBCardImage
+  } from 'mdb-react-ui-kit';
 
 
 function DevPersonalProfile() {
@@ -15,31 +23,88 @@ function DevPersonalProfile() {
     
     useEffect(() => { dispatch(getMyDevProfileAsync(token)) }, [dispatch, token])
 
-    // useEffect(() => {
-    //     if(tempDev.email_from_reg === ""){dispatch(())}
-    //   }, [])
-
     return (
         <div>
             <h4> Personal Profile </h4> <br />
 
-            {isLogged ?
-            
-                <div>
-                    <MDBContainer className="my-5 d-flex flex-column justify-content-center align-items-center">
-                        <img
-                            src={"http://127.0.0.1:8000" + tempDev.profile_picture}
-                            className="rounded-circle mb-3"
-                            style={{ width: "150px" }}
-                            alt="Avatar"
-                        />
-                    </MDBContainer>
-           
-                {tempDev.full_name} - {tempDev.email_from_reg} - {tempDev.contact_phone_number}</div>
-                : "you need to create your profile"}
+    {isLogged ?
+    <section style={{ backgroundColor: '#eee' }}>
+      <MDBContainer className="py-5">
+        <MDBRow>
+          <MDBCol lg="4">
+            <MDBCard className="mb-4">
+              <MDBCardBody className="text-center">
+                <MDBCardImage
+                  src={"http://127.0.0.1:8000" + tempDev.profile_picture}
+                  alt="avatar"
+                  className="rounded-circle"
+                  style={{ width: '150px' }}
+                  fluid /> 
+              </MDBCardBody>
+              <div className="d-flex justify-content-center mb-2">
+              {tempDev.linkdin_url? 
+              <a style={{ marginRight: '.5rem' }} href={tempDev.linkdin_url}>Linkdin</a> : "" } 
+              {tempDev.GitHub_url ?  
+              <a style={{ marginLeft: '.5rem' }} href={tempDev.GitHub_url}>GitHub</a> : "" }
+              </div>
+            </MDBCard>
+          </MDBCol>
+          <MDBCol lg="8">
+            <MDBCard className="mb-4">
+              <MDBCardBody>
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Full Name</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">{tempDev.full_name}</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Email</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">{tempDev.email_from_reg}</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Phone</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">{tempDev.contact_phone_number}</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>description</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">{tempDev.description}</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr /> 
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>years of experience</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">{tempDev.years_of_experience}</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
+    </section>
+    : "you need to create your profile"}
 
-
-            {tempDev.email_from_reg && <button onClick={() => dispatch(delDevAsync(token))}>delete this profile</button>}
+            {tempDev.email_from_reg && <button className="btn btn-primary" style={{margin: '20px'}} onClick={() => dispatch(delDevAsync(token))}>delete this profile</button>}
 
 
             {tempDev.email_from_reg ? <Link to="/editDevProfile">
@@ -48,14 +113,8 @@ function DevPersonalProfile() {
                 <Link to="/addDev">
                     <button className="btn btn-primary">create your profile</button>
                 </Link>} 
-
-
         </div>
     )
 }
-
-
-
-
 
 export default DevPersonalProfile

@@ -231,7 +231,9 @@ def get_my_association_posts(request):
         try:
             # user that coneccted == the email of the user are connected (by email str)
             user= request.user
-            serializer = PostsSerializer(Posts_of_the_associations.objects.get(email_from_reg = user))
+            print(user)
+            serializer = PostsSerializer(Posts_of_the_associations.objects.filter(email_from_reg = user), many=True)
+            print(serializer)
         except:
                 return Response(status=status.HTTP_400_BAD_REQUEST, data="post not found")
         return Response(status=status.HTTP_200_OK, data=serializer.data)
@@ -251,16 +253,27 @@ def posts(request,_id=-1):
             print('error',api_serializer.errors)
             return Response(api_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
+    # # delete post
+    # elif request.method == "DELETE":
+    #     # the dev that coneect (by email str)
+    #     post_2_del = request.user
+    #     print(request.user)
+    #     try:
+    #         dev = Posts_of_the_associations.objects.get(email_from_reg=post_2_del)
+    #         dev.delete()
+    #     except:
+    #         return Response(status=status.HTTP_400_BAD_REQUEST, data="dev not found")
+    #     return Response(status=status.HTTP_200_OK, data="dev delete")
+
     # delete post
     elif request.method == "DELETE":
         # the dev that coneect (by email str)
-        post_2_del = request.user
-        print(request.user)
+        id_2_del = _id
         try:
-            dev = Posts_of_the_associations.objects.get(email_from_reg=post_2_del)
-            dev.delete()
+            post = Posts_of_the_associations.objects.get(id=id_2_del)
+            post.delete()
         except:
-            return Response(status=status.HTTP_400_BAD_REQUEST, data="dev not found")
-        return Response(status=status.HTTP_200_OK, data="dev delete")
+            return Response(status=status.HTTP_400_BAD_REQUEST, data="post not found")
+        return Response(status=status.HTTP_200_OK, data=id_2_del)
 
-    
+  

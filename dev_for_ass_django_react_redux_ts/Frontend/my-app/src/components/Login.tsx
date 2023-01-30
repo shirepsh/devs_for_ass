@@ -5,19 +5,20 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { getEmailAsync, loginAsync, selectIsLogged } from "../slicers/developer/developerSlice";
 import { Form, Button } from 'react-bootstrap'
 import { selectToken } from "../slicers/developer/Association/associationSlice";
-
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 
 const Login = () => {
 
     const isLogged = useAppSelector(selectIsLogged)
     const dispatch = useAppDispatch()
+    const token = useAppSelector(selectToken)
+    const notify = () => toast("you need to fill the fields!")
 
     // use state for user details for login
-    const [username, setuname] = useState("")
-    const [password, setpassword] = useState("")
-
-    const token = useAppSelector(selectToken)
+    const [username, setuname] = useState<string | null>(null)
+    const [password, setpassword] = useState<string | null>(null)
 
     if (isLogged){ dispatch(getEmailAsync(token))}
 
@@ -28,30 +29,37 @@ const Login = () => {
             {isLogged && 'welcome: ' + username}
             <Form>
             <Form.Group>
-                    <Form.Label>User</Form.Label>
+                    <Form.Label>User </Form.Label>
                     <Form.Control
                         type='user'
                         placeholder='Enter user'
-                        value={username}
-                        onChange={(e) => setuname(e.target.value)}>
+                        // value={username}
+                        onChange={(e) => setuname(e.target.value)} required>
                     </Form.Control>
                 </Form.Group>
 
                 <Form.Group >
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>Password </Form.Label>
                     <Form.Control
                         type='password'
                         placeholder='Enter password'
-                        value={password}
-                        onChange={(e) => setpassword(e.target.value)}
-                    >
+                        // value={password}
+                        onChange={(e) => setpassword(e.target.value)} required >
                     </Form.Control>
                 </Form.Group>
 
-                <Button  className="btn btn-outline-success" style={{margin: '20px' , color:"white"}} onClick={() => dispatch(loginAsync({ username, password }))}>Login</Button>
+                <Button  className="btn btn-outline-success" style={{margin: '20px' , color:"white"}} 
+                    onClick={() => {
+                    if (username != null && password != null ){
+                    dispatch(loginAsync({ username, password }))
+                    }
+                    else {notify ()}
+
+                }}>Login</Button>
+                 <ToastContainer/>
                 </Form>
 
-
+        
             {/* User name: <input onChange={(e) => setuname(e.target.value)} /> */}
             {/* Password: <input type='password' onChange={(e) => setpassword(e.target.value)} /> */}
             {/* <button  className="btn btn-outline-success" style={{margin: '20px'}} onClick={() => dispatch(loginAsync({ username, password }))}>Login</button> */}

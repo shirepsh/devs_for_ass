@@ -29,8 +29,16 @@ const Navbar = () => {
                 <li><Link to="/Association">our Associations</Link></li>
 
                 {/* cheng between login to logout */}
-                <li style={{ backgroundColor: "green", float: "right" }}> {isLogged || IsAssLogged ? <div> <button  className="btn btn-outline-success" style = {{border: 'none', color:'white', height:'52px'}}  onClick={() => dispatch(logOutAsync())}>LOGOUT</button></div> : <Link to="/Login">login/logout</Link>}</li>
+                <li style={{ backgroundColor: "green", float: "right" }}> {isLogged || IsAssLogged ? <div> 
+                    <Link to="/homePage"><button style = {{border: 'none', color:'white', backgroundColor:"green", height:'20px', textAlign:'center'}} 
+                 onClick={() => dispatch(logOutAsync())}>LOGOUT</button></Link></div> : <Link to="/Login">LOGIN</Link>}</li>
 
+                {/* cheng between login to logout */}
+                {/*  <li style={{ backgroundColor: "green", float: "right" }}> {isLogged || IsAssLogged ? <div> 
+                    <button  className="btn btn-outline-success" style = {{border: 'none', color:'white', height:'52px'}}  
+                    onClick={() => dispatch(logOutAsync())}>LOGOUT</button></div> : <Link to="/Login">login/logout</Link>}</li> */}
+
+                    
                 {/* presentation the personal profile respectively */}
                 <li style={{ backgroundColor: "red", float: "right" }}> {isLogged && loggedTemp === "dev" ? <Link to="/devPersonalProfile">your profile</Link> : ""} </li>
                 

@@ -30,7 +30,7 @@ export const Association = () => {
           </Card.Text>
         </Card.Body>
         <ListGroup className="list-group-flush">
-          <ListGroup.Item>{ass.email_from_reg} <br/> {ass.contact_info}</ListGroup.Item>
+          <ListGroup.Item>{ass.email_from_reg} <br/> </ListGroup.Item>
           <ListGroup.Item>{ass.location} </ListGroup.Item>
           
         </ListGroup>

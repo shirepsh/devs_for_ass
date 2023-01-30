@@ -41,12 +41,14 @@ class Association_details(models.Model):
 
 # posts of associations table
 class Posts_of_the_associations(models.Model):
-    user = models.ForeignKey(Association_details, on_delete=models.SET_NULL, null=True )
+    user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True )
+    post = models.ForeignKey(Association_details, on_delete=models.SET_NULL, null=True )
+    association_name = models.CharField(max_length = 255, null = True, blank = True)
     email_from_reg = models.CharField(max_length = 255, null = False, blank = False)
     post_title = models.CharField(max_length = 255, null = True, blank = True)
     post_description = models.CharField(max_length = 255, null = True, blank = True)
-    photos = models.ImageField(null=True,blank=True,default='/placeholder.png')
+    photo = models.ImageField(null=True,blank=True,default='/placeholderPost.png')
     contact_phone_number = models.CharField(max_length = 255, null = True, blank = True)
 
     def __str__(self):
-        return self.post_title
+        return self.email_from_reg
