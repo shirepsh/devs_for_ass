@@ -79,7 +79,6 @@ function AddDeveloper() {
       if(profile_picture){
         formData.append('profile_picture', profile_picture)}
 
-      console.log(email)
       axios.post(MYSERVER + "dev", formData, config).then(()=> setFlagk(true))
     }
       
@@ -91,7 +90,8 @@ function AddDeveloper() {
 
     <form onSubmit={handleImageUpload}>   
     your full name: <input type="text"  placeholder="full name" value={full_name} onChange={handleNameChange}></input> <br/>
-    phone number:  <input type="text"  placeholder="contact phone number" value={contact_phone_number} onChange={handlePhoneChange}></input> <br/>
+    phone number:  <input type="text"  placeholder="contact phone number" value={contact_phone_number} onChange={handlePhoneChange}></input> <br/><br/>
+    <h6>we accepy only BMP, EPS, GIF, ICO, IM, JPEG, JPG, MSP, PCX, PNG, PPM, SGI, SPIDER, TIFF, WebP, and XBM fiels</h6>
     profile picture:  <input type="file" onChange={handleImageChange}></input> <br/>
     description:  <input type="text"  placeholder="description" value={description} onChange={handleDescChange}></input> <br/>
     your experience: <input type="text" placeholder="years of experience" value={years_of_experience} onChange={handleYearsChange}></input> <br/>

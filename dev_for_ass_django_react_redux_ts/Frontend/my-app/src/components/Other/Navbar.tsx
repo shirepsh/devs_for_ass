@@ -19,7 +19,10 @@ const Navbar = () => {
     // check who is logged
     const loggedTemp = useAppSelector(selectTypeLogged)
 
-    useEffect(() => { dispatch(checkTypeAsync(token)) }, [dispatch, token])
+    useEffect(() => { 
+        if (isLogged){
+        dispatch(checkTypeAsync(token))}
+     }, [dispatch, token])
 
     return (
         <div>

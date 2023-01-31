@@ -20,9 +20,10 @@ function EditAssProfile() {
 
   // UNCHANGEABLE
   const [email_from_reg, setEmail] = useState(email)
-
+  // console.log(tempAss.profile_picture)
   const [association_name, setAssociationName] = useState(tempAss.association_name)
   const [profile_picture, setProfilePicture] = useState(tempAss.profile_picture)
+  // <File | null>(null)
   // const [contact_phone_number, setContactPhoneNumber] = useState(tempAss.contact_phone_number)
   const [description, setDescription] = useState(tempAss.description)
   const [location, setLocation] = useState(tempAss.location)
@@ -31,12 +32,8 @@ function EditAssProfile() {
     setAssociationName(event.target.value);
   };
 
-  // const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setContactPhoneNumber(event.target.value);
-  // };
-
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setProfilePicture(event.target.files![0]);
+    setProfilePicture(event.target.files![0] || null);
   };
 
   const handleDescChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,7 +49,6 @@ function EditAssProfile() {
 
     const formData = new FormData();
     formData.append('association_name', association_name);
-    // formData.append('contact_phone_number', contact_phone_number);
     formData.append('email_from_reg', email_from_reg);
     // formData.append('profile_picture', profile_picture!);
     formData.append('description', description);
@@ -60,6 +56,9 @@ function EditAssProfile() {
 
     if(profile_picture){
       formData.append('profile_picture', profile_picture)}
+    else{
+      formData.append('profile_picture', tempAss.profile_picture)
+    }
 
     axios.put(MYSERVER + "ass", formData, config)}
 
@@ -70,8 +69,8 @@ function EditAssProfile() {
       <h4> Edit your Profile </h4>
 
       <form onSubmit={handleImageUpload}>   
-    your association name: <input type="text"  placeholder="association name" value={association_name} onChange={handleNameChange}></input> <br/>
-    {/* phone number:  <input type="text"  placeholder="contact phone number" value={contact_phone_number} onChange={handlePhoneChange}></input> <br/> */}
+    your association name: <input type="text"  placeholder="association name" value={association_name} onChange={handleNameChange}></input> <br/><br/>
+    <h6>we accepy only BMP, EPS, GIF, ICO, IM, JPEG, JPG, MSP, PCX, PNG, PPM, SGI, SPIDER, TIFF, WebP, and XBM fiels</h6> 
     profile picture:  <input type="file" onChange={handleImageChange}></input> <br/> 
     description:  <input type="text"  placeholder="description" value={description} onChange={handleDescChange}></input> <br/>
     location:  <input type="text"  placeholder="location" value={location} onChange={handleLocationChange}></input> <br/>

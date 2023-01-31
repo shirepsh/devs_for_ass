@@ -21,7 +21,9 @@ function DevPersonalProfile() {
   const token = useAppSelector(selectToken)
   const isLogged = useAppSelector(selectIsLogged)
 
-  useEffect(() => { dispatch(getMyDevProfileAsync(token)) }, [dispatch, token])
+  useEffect(() => { 
+    dispatch(getMyDevProfileAsync(token)) 
+  }, [dispatch, token])
 
   return (
     <div>

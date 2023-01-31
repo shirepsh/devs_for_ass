@@ -23,7 +23,7 @@ class Developer_details(models.Model):
     GitHub_url = models.CharField(max_length = 255, null = True, blank = True)
 
     def __str__(self):
-        return self.email_from_reg
+        return self.full_name
     
 #  association profile table
 class Association_details(models.Model):

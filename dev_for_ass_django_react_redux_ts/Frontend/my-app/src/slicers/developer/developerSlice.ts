@@ -59,7 +59,6 @@ export const checkTypeAsync = createAsyncThunk(
   'developer/checkType',
   async (token: string) => {
     const response = await checkType(token);
-    console.log(response.data)
     return response.data;
   });
 
@@ -67,7 +66,6 @@ export const getEmailAsync = createAsyncThunk(
   'developer/getEmail',
   async (token: string) => {
     const response = await getEmail(token);
-    console.log(response.data)
     return response.data;
   });
 
@@ -113,37 +111,40 @@ export const developerSlice = createSlice({
   // the answers for the async functions
   extraReducers: (builder) => {
     builder.addCase(DevRegAsync.fulfilled, (state, action) => {
-      console.log(action.payload)
+      
       state.IsLogged = true
     }).addCase(loginAsync.fulfilled, (state, action) => {
-      console.log(action.payload)
+      
       state.token = action.payload.access
       localStorage.setItem("token", JSON.stringify(state.token))
       state.IsLogged = true
       state.loggedDev = {email_from_reg: ""}
+
     }).addCase(logOutAsync.fulfilled, (state, action) => {
       state.token = ""
       localStorage.clear()
       state.IsLogged = false
       state.loggedDev = {email_from_reg:""}
+      
     }).addCase(checkTypeAsync.fulfilled, (state, action) => {
-      console.log(action.payload)
       state.checkTypeLogged = action.payload
+
     }).addCase(getEmailAsync.fulfilled, (state, action) => {
       state.emailLogged = action.payload
-      console.log(current(state))
+      // console.log(current(state))
+
     }).addCase(getAllDevAsync.fulfilled, (state, action) => {
-      console.log(action.payload)
+      
       state.developers = action.payload
     }).addCase(getMyDevProfileAsync.fulfilled, (state, action) => {
-      console.log(action.payload)
+      
       state.loggedDev = action.payload
     }).addCase(delDevAsync.fulfilled, (state, action) => {
-      console.log(action.payload)
+      
       state.developers.filter((x) => x.id !== action.payload)
       state.loggedDev = {email_from_reg:""}
     }).addCase(EditDevAsync.fulfilled, (state, action) => {
-      console.log(action.payload)
+      
       state.developers.filter((x) => x.email_from_reg !== action.payload.email_from_reg) 
       state.developers.push(action.payload)
     })

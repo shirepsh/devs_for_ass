@@ -26,7 +26,6 @@ export function delPost(token:string, id:number) {
         Authorization: `Bearer ${token}`
     }
   };
-  console.log('id', id) 
   return new Promise<{ data: any}>((resolve) => 
   axios.delete(MYSERVER + "post/" + id, config ).then(res => resolve({ data: res.data })))}
 

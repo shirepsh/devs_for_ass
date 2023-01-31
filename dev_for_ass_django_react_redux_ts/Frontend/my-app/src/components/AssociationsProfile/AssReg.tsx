@@ -26,7 +26,6 @@ const AssReg = () => {
         if (IsAssLogged) {
             if (token === ''  && username && password) {
                 dispatch(loginAsync({ username, password }))
-                console.log(token)
             }
             navigate('/homePage')
         }

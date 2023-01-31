@@ -25,7 +25,6 @@ const DevReg = () => {
         if (isLogged) {
             if (token === '' && username && password) {
                 dispatch(loginAsync({ username, password }))
-                console.log(token)
             }
             navigate('/homePage')
         }

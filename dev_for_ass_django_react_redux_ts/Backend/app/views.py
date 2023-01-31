@@ -139,15 +139,18 @@ def dev_profile(request,_id=-1):
 
     # update by id
     elif request.method == "PUT":
-        # the dev that coneect (by email str)
+         # the association that coneect (by email str)
         dev_2_upd = request.user
         try:
-            ser = DeveloperDetailsSerializer(data=request.data)
-            old_dev = Developer_details.objects.get(email_from_reg=dev_2_upd)
-            res = ser.update(old_dev, request.data)
-            return Response(res, status=status.HTTP_200_OK)
+            temp_upd = Developer_details.objects.get(email_from_reg=dev_2_upd.email)
+            ser = DeveloperDetailsSerializer(instance=temp_upd, data=request.data)
+            if ser.is_valid():
+                ser.save()
+                return Response(ser.data, status=status.HTTP_200_OK)
+            return Response("NOT VALID", status=status.HTTP_400_BAD_REQUEST)
         except:
-            return Response(status=status.HTTP_400_BAD_REQUEST, data="dev not found")
+            return Response(status=status.HTTP_400_BAD_REQUEST, data="association not found")
+    
 
 # ######################################################################################################################
 # ///////////// create profile as association - full crud
@@ -202,15 +205,19 @@ def association_profile(request,_id=-1):
 
     # update by id
     elif request.method == "PUT":
-        # the association that coneect (by email str)
+         # the association that coneect (by email str)
         ass_2_upd = request.user
         try:
-            ser = AssociationDetailsSerializer(data=request.data)
-            old_ass = Association_details.objects.get(email_from_reg=ass_2_upd)
-            res = ser.update(old_ass, request.data)
-            return HttpResponse(res, status=status.HTTP_200_OK)
+            temp_upd = Association_details.objects.get(email_from_reg=ass_2_upd.email)
+            ser = AssociationDetailsSerializer(instance=temp_upd, data=request.data)
+            if ser.is_valid():
+                ser.save()
+                return Response(ser.data, status=status.HTTP_200_OK)
+            return Response("NOT VALID", status=status.HTTP_400_BAD_REQUEST)
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST, data="association not found")
+
+    
 
 # ######################################################################################################################
 # ///////////// manage the association posts - full crud
@@ -252,18 +259,6 @@ def posts(request,_id=-1):
         else:
             print('error',api_serializer.errors)
             return Response(api_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-
-    # # delete post
-    # elif request.method == "DELETE":
-    #     # the dev that coneect (by email str)
-    #     post_2_del = request.user
-    #     print(request.user)
-    #     try:
-    #         dev = Posts_of_the_associations.objects.get(email_from_reg=post_2_del)
-    #         dev.delete()
-    #     except:
-    #         return Response(status=status.HTTP_400_BAD_REQUEST, data="dev not found")
-    #     return Response(status=status.HTTP_200_OK, data="dev delete")
 
     # delete post
     elif request.method == "DELETE":

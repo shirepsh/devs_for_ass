@@ -6,6 +6,7 @@ import { getMyAssProfileAsync, selectLoggedAss, selectToken } from '../../slicer
 import { deletePost, delPostAsync, getMyAssPostsAsync, selectLoggedAssPosts } from '../../slicers/developer/posts/postsSlice'
 import { Col, Row } from 'react-bootstrap';
 import { set } from 'immer/dist/internal'
+import { selectIsLogged } from '../../slicers/developer/developerSlice'
 
 
 
@@ -15,16 +16,22 @@ function MyPosts() {
 
     const dispatch = useAppDispatch()
 
+    const isLogged = useAppSelector(selectIsLogged)
+
     const tempAssPosts = useAppSelector(selectLoggedAssPosts)
     const token = useAppSelector(selectToken)
 
     // in order to update the details of the current association && 
     // if there are associton profile he will recive the right my post page 
-    useEffect(() => { dispatch(getMyAssProfileAsync(token)) }, [])
+    useEffect(() => { 
+      if (isLogged){
+      dispatch(getMyAssProfileAsync(token))}
+    }, [])
 
     // in order to bring the update data after delete one post
     useEffect(() => {
-      dispatch(getMyAssPostsAsync(token));
+      if (isLogged){
+      dispatch(getMyAssPostsAsync(token))}
     }, [])
 
     // we create this func in order to call her in the onClick event, in this way we can do 2 actions onces.

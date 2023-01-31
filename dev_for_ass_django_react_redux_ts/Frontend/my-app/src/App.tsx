@@ -2,7 +2,7 @@
 import { Outlet } from "react-router-dom";
 import Navbar from './components/Other/Navbar';
 import './App.css';
-import {  checkTypeAsync, getEmailAsync, getToken, selectToken } from "./slicers/developer/developerSlice";
+import {  checkTypeAsync, getEmailAsync, getToken, selectIsLogged, selectToken } from "./slicers/developer/developerSlice";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { useEffect } from "react";
 import Footer from "./components/Other/Footer";
@@ -14,19 +14,27 @@ function App() {
   const dispatch = useAppDispatch()
   const email = useAppSelector(selectAssEmailLogged)
   const token = useAppSelector(selectToken)
+  const isLogged = useAppSelector(selectIsLogged)
   
     useEffect(() => {
-      dispatch(getToken())
+      if (isLogged){
+      dispatch(getToken())}
       }, [dispatch])
 
       useEffect(() => {
-        (dispatch(getEmailAsync(token)))
-        console.log(email)
+        if (isLogged){
+        (dispatch(getEmailAsync(token)))}
       }, [dispatch, token])
     
-      useEffect(() => { dispatch(checkTypeAsync(token)) }, [dispatch, token])
+      useEffect(() => { 
+        if (isLogged){
+        dispatch(checkTypeAsync(token))}
+      }, [dispatch, token])
 
-      useEffect(() => {dispatch(getMyAssPostsAsync(token)) }, [dispatch, token])
+      useEffect(() => {
+        if (isLogged){
+        dispatch(getMyAssPostsAsync(token))}
+      }, [dispatch, token])
 
       
       

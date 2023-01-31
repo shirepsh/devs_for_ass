@@ -53,7 +53,6 @@ export const postsSlice = createSlice({
   initialState,
   reducers: {
     addPost: (state, action) => {state.Posts.push(action.payload);
-      console.log(action.payload)
     },
     deletePost: (state, action) => {
       state.Posts = state.Posts.filter((x) => x.id !== Number(action.payload));
@@ -66,8 +65,10 @@ export const postsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getAllPostsAsync.fulfilled, (state, action) => {
       state.Posts = action.payload
+
     }).addCase(getMyAssPostsAsync.fulfilled, (state, action) => {
       state.loggedAssPosts = action.payload
+      
     }).addCase(delPostAsync.fulfilled, (state, action) => {
       console.log("deleted")
       // console.log("find", current(state.Posts))

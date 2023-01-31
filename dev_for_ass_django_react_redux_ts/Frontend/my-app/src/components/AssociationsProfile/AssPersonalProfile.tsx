@@ -36,7 +36,7 @@ function AssPersonalProfile() {
             <MDBCard className="mb-4">
               <MDBCardBody className="text-center">
                 <MDBCardImage
-                  src={"http://127.0.0.1:8000" + tempAss.profile_picture}
+                  src={"http://127.0.0.1:8000/" + tempAss.profile_picture}
                   alt="profile picture"
                   className="rounded-circle"
                   style={{ width: '150px' }}
