@@ -1,15 +1,30 @@
 import axios from 'axios'
-import React, { useState  } from 'react'
-import { useAppSelector } from '../../app/hooks'
+import React, { useEffect, useState  } from 'react'
+import { Link } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { MYSERVER } from '../../env'
 import { selectAssEmailLogged, selectLoggedAss } from '../../slicers/developer/Association/associationSlice'
 import { selectToken} from '../../slicers/developer/developerSlice'
+import { addPost, selectLoggedAssPosts } from '../../slicers/developer/posts/postsSlice'
+import { useNavigate } from 'react-router-dom'
+
+
 
 function AddPost() {
 
+  const dispatch = useAppDispatch()
+  
   const tempAss = useAppSelector(selectLoggedAss)
+  const tempAssPosts = useAppSelector(selectLoggedAssPosts)
   const token = useAppSelector(selectToken)
   const email = useAppSelector(selectAssEmailLogged)
+
+  const navigate = useNavigate()
+  const [flagk, setFlagk] = useState(false)
+
+  useEffect(() => {
+    if (flagk) {navigate('/MyPosts')}
+  }, [flagk])
 
   const config = {
     headers: {
@@ -55,30 +70,36 @@ function AddPost() {
     const handleImageUpload = async (e: { preventDefault: () => void }) => {
       e.preventDefault();
 
+      
       const formData = new FormData();
       formData.append('association_name', association_name );
       formData.append('email_from_reg',email_from_reg);
-      // formData.append('profile_picture', profile_picture);
 
       formData.append('contact_phone_number', contact_phone_number);
       formData.append('post_title', post_title);
       formData.append('post_description', post_description);
-      formData.append('photo', photo);
 
-      console.log(tempAss.association_name)
-      axios.post(MYSERVER + "post", formData, config)}
+      if (photo){
+      formData.append('photo', photo)}
+
+      axios.post(MYSERVER + "post", formData, config).then((res) => dispatch(addPost(res.data)) )
+      .then(()=> setFlagk(true))
+    }
 
   return (
     <div> 
       <h4>add post: </h4><br/>
 
-    {tempAss.association_name ? 
+      <h6>In order to request help with a certain technology for your association</h6><br/>
+
+    {tempAss.association_name  ? 
     <form onSubmit={handleImageUpload}>
     association name: <input type="text"  placeholder="full name" value={association_name} onChange={handleNameChange}></input> <br/>
     phone number for contact:  <input type="text"  placeholder="contact phone number" value={contact_phone_number} onChange={handlePhoneChange}></input> <br/>
     post title:  <input type="text"  placeholder="post title" value={post_title} onChange={handlePostTitleChange}></input> <br/>
     post description : <input type="text" placeholder="post_description" value={post_description} onChange={handlePostDescriptionChange}></input> <br/>
     photo of your association:  <input type="file" onChange={handleImageChange}></input> <br/> 
+    <h6>we accepy only jpeg / png fiels</h6>
 
     <button type="submit">send</button>  <br/>
       </form> : "you need to create profile first"}
@@ -89,4 +110,8 @@ function AddPost() {
 
 export default AddPost
 
+
+function then(arg0: () => { payload: any; type: "post/addPost" }) {
+  throw new Error('Function not implemented.')
+}
 

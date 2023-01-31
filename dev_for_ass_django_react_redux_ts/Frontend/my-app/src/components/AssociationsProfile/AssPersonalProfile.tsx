@@ -20,6 +20,7 @@ function AssPersonalProfile() {
     const tempAss = useAppSelector(selectLoggedAss)
     const token = useAppSelector(selectToken)
     const isLogged = useAppSelector(selectIsLogged)
+
     
     useEffect(() => { dispatch(getMyAssProfileAsync(token)) }, [dispatch, token])
 
@@ -36,11 +37,10 @@ function AssPersonalProfile() {
               <MDBCardBody className="text-center">
                 <MDBCardImage
                   src={"http://127.0.0.1:8000" + tempAss.profile_picture}
-                  alt="avatar"
+                  alt="profile picture"
                   className="rounded-circle"
                   style={{ width: '150px' }}
                   fluid />
-                {/* <p className="text-muted mb-4">{tempAss.location}</p> */}
                 <div className="d-flex justify-content-center mb-2">
                 </div>
               </MDBCardBody>
@@ -66,15 +66,6 @@ function AssPersonalProfile() {
                     <MDBCardText className="text-muted">{tempAss.email_from_reg}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
-                {/* <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Phone</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{tempAss.contact_phone_number}</MDBCardText>
-                  </MDBCol>
-                </MDBRow> */}
                 <hr />
                 <MDBRow>
                   <MDBCol sm="3">
@@ -93,43 +84,29 @@ function AssPersonalProfile() {
                     <MDBCardText className="text-muted">{tempAss.location}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
-              </MDBCardBody>
-            </MDBCard>
-
-           
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-    </section>
-    : "you need to create your profile"}
-  
-            {tempAss.email_from_reg && <button className="btn btn-primary" style={{margin: '20px'}} onClick={() => dispatch(delAssAsync(token))}>delete this profile</button>}
-
-
-            {tempAss.email_from_reg ? <Link to="/editAssProfile">
+                <hr /> 
+                <MDBRow>
+                  <MDBCol sm="9">
+                  {tempAss.email_from_reg && <button className="btn btn-primary" style={{margin: '20px'}}
+             onClick={() => dispatch(delAssAsync(token))}>delete this profile</button>}
+                  {tempAss.email_from_reg ? <Link to="/editAssProfile">
                 <button className="btn btn-primary">edit your profile</button>
             </Link> :
                 <Link to="/addAss">
                     <button className="btn btn-primary">create your profile</button>
                 </Link>} 
+                  </MDBCol>
+                </MDBRow>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
+    </section>
+    : "you need to create your profile"}
+
         </div>
     )
 }
 
 export default AssPersonalProfile
-
-
-// 
-            
-// <div>
-// <MDBContainer className="my-5 d-flex flex-column justify-content-center align-items-center">
-//     <img
-//         src={"http://127.0.0.1:8000" + tempAss.profile_picture}
-//         className="rounded-circle mb-3"
-//         style={{ width: "150px" }}
-//         alt="Avatar"
-//     />
-// </MDBContainer>
-
-// {tempAss.association_name} - {tempAss.email_from_reg} - {tempAss.contact_phone_number}</div>
-// : "you need to create your profile"}

@@ -145,7 +145,7 @@ def dev_profile(request,_id=-1):
             ser = DeveloperDetailsSerializer(data=request.data)
             old_dev = Developer_details.objects.get(email_from_reg=dev_2_upd)
             res = ser.update(old_dev, request.data)
-            return Response(request.data, status=status.HTTP_200_OK)
+            return Response(res, status=status.HTTP_200_OK)
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST, data="dev not found")
 

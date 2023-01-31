@@ -54,9 +54,12 @@ function EditAssProfile() {
     formData.append('association_name', association_name);
     // formData.append('contact_phone_number', contact_phone_number);
     formData.append('email_from_reg', email_from_reg);
-    formData.append('profile_picture', profile_picture!);
+    // formData.append('profile_picture', profile_picture!);
     formData.append('description', description);
     formData.append('location', location);
+
+    if(profile_picture){
+      formData.append('profile_picture', profile_picture)}
 
     axios.put(MYSERVER + "ass", formData, config)}
 

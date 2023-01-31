@@ -27,6 +27,8 @@ function App() {
       useEffect(() => { dispatch(checkTypeAsync(token)) }, [dispatch, token])
 
       useEffect(() => {dispatch(getMyAssPostsAsync(token)) }, [dispatch, token])
+
+      
       
   return (
     <div className="App">

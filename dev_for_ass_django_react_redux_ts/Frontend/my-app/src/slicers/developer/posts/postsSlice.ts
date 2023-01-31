@@ -1,7 +1,7 @@
 // this sclier is posts of associations 
 // add function is in the component herself
 
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
 import { useAppSelector } from '../../../app/hooks';
 import { RootState } from '../../../app/store';
 import Post from '../../../models/Post';
@@ -42,7 +42,6 @@ export const getAllPostsAsync = createAsyncThunk(
 export const delPostAsync = createAsyncThunk(
   'post/delPost',
   async (props: {token:string, id: number}) => {
-    console.log(props)
     const response = await delPost(props.token, props.id);
     return response.data;
   });
@@ -53,30 +52,36 @@ export const postsSlice = createSlice({
   name: 'post',
   initialState,
   reducers: {
+    addPost: (state, action) => {state.Posts.push(action.payload);
+      console.log(action.payload)
+    },
+    deletePost: (state, action) => {
+      state.Posts = state.Posts.filter((x) => x.id !== Number(action.payload));
+      state.loggedAssPosts= state.loggedAssPosts.filter((x) => x.id !== (action.payload))
+    }
   },
 
   // #################################################################################################################
   // the answers for the async functions
   extraReducers: (builder) => {
     builder.addCase(getAllPostsAsync.fulfilled, (state, action) => {
-      console.log(action.payload)
       state.Posts = action.payload
     }).addCase(getMyAssPostsAsync.fulfilled, (state, action) => {
-      console.log(action.payload)
       state.loggedAssPosts = action.payload
-      // console.log(state.loggedAssPosts)
     }).addCase(delPostAsync.fulfilled, (state, action) => {
-      console.log("ddddd", action.payload)
-      console.log(state.Posts)
-      state.Posts.filter((x) => x.id !== Number(action.payload))
-      // state.Posts = []
-      state.loggedAssPosts.filter((x) => x.id !== action.payload)
+      console.log("deleted")
+      // console.log("find", current(state.Posts))
+      // console.log('new' ,current(state.loggedAssPosts))
+      // console.log("id", action.payload)
+      // state.Posts= state.Posts.filter((x) => x.id !== (action.payload))
+      // state.loggedAssPosts= state.loggedAssPosts.filter((x) => x.id !== (action.payload))
     })
   }, })
 
 
 // ###############################################################################################################33
 // export for everything (but the async function -- that we did them export in their part)
+export const {addPost, deletePost} = postsSlice.actions
 export const selectPost = (state: RootState) => state.post.Posts;
 // export const selectToken = (state: RootState) => state.post.token;
 export const selectLoggedAssPosts = (state: RootState) => state.post.loggedAssPosts;
