@@ -67,7 +67,7 @@ function MyPosts() {
           </Card.Body>
           <ListGroup className="list-group-flush">
             <ListGroup.Item>{onePost.contact_phone_number}</ListGroup.Item>
-            <ListGroup.Item><Card.Img variant="top" src={"http://127.0.0.1:8000" + onePost.photo} alt="" /> </ListGroup.Item>
+            <ListGroup.Item><Card.Img style={{height:"150px", width:"200px"}} variant="top" src={"http://127.0.0.1:8000" + onePost.photo} alt="" /> </ListGroup.Item>
             <ListGroup.Item><button className="btn btn-danger" onClick={() => handelDel(token , onePost.id)}>delete this post</button></ListGroup.Item>
             
           </ListGroup>

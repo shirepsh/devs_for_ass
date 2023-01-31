@@ -44,7 +44,7 @@ function App() {
     
     <Navbar /> 
     {/* Main content start */}
-     <Outlet /> 
+    <Outlet /> 
     {/* Main content end */}
      <Footer/>
      

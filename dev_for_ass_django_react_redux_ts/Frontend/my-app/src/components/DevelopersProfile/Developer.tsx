@@ -25,7 +25,7 @@ export const Developer = () => {
           <div >
           <Col className="d-flex">   
         <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src={"http://127.0.0.1:8000" + dev.profile_picture} alt="" />
+        <Card.Img style={{height:"230px"}} variant="top" src={"http://127.0.0.1:8000" + dev.profile_picture} alt="" />
         <Card.Body>
           <Card.Title style={{color:'blue'}}> {dev.full_name}</Card.Title>
           <Card.Text>
@@ -48,3 +48,7 @@ export const Developer = () => {
     </div>
   );
 }
+
+
+
+

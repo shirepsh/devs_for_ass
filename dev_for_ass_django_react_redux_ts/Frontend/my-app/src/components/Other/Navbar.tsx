@@ -37,16 +37,16 @@ const Navbar = () => {
                  onClick={() => dispatch(logOutAsync())}>LOGOUT</button></Link></div> : <Link to="/Login">LOGIN</Link>}</li>
 
                 {/* presentation the personal profile respectively */}
-                <li style={{ backgroundColor: "red", float: "right" }}>
+                <li style={{ backgroundColor: "#1a8cff", float: "right" }}>
                      {isLogged && loggedTemp === "dev" ? 
                      <Link to="/devPersonalProfile">your profile</Link> : ""} </li>
                 
-                <li style={{ backgroundColor: "red", float: "right" }}>
+                <li style={{ backgroundColor: "#1a8cff", float: "right" }}>
                      {IsAssLogged && loggedTemp === "ass" ? 
                      <Link to="/AssPersonalProfile">your profile</Link> : "" } </li>
 
                 {/* presentation the personal posts */}
-                <li style={{ backgroundColor: "red", float: "right" }}> 
+                <li style={{ backgroundColor: "#1a8cff", float: "right" }}> 
                 {IsAssLogged && loggedTemp === "ass" ? 
                 <Link to="/MyPosts">my posts</Link> : "" } </li>
 
