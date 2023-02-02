@@ -85,22 +85,23 @@ function AddDeveloper() {
 
   return (
     <div> 
-      <h4>create your profile </h4><br/>
-      <h6>By doing this you can offer your skills to the various associations</h6><br/>
+      <h4 style={{color:"wheat"}}>create your profile </h4><br/>
+      <h6 style={{color:"wheat"}}> By doing this you can offer your skills to the various associations</h6><br/>
 
-    <form onSubmit={handleImageUpload}>   
+    <form onSubmit={handleImageUpload} style={{color:"white"}}>   
     your full name: <input type="text"  placeholder="full name" value={full_name} onChange={handleNameChange}></input> <br/>
-    phone number:  <input type="text"  placeholder="contact phone number" value={contact_phone_number} onChange={handlePhoneChange}></input> <br/><br/>
-    <h6>we accepy only BMP, EPS, GIF, ICO, IM, JPEG, JPG, MSP, PCX, PNG, PPM, SGI, SPIDER, TIFF, WebP, and XBM fiels</h6>
-    profile picture:  <input type="file" onChange={handleImageChange}></input> <br/>
-    description:  <input type="text"  placeholder="description" value={description} onChange={handleDescChange}></input> <br/>
+    phone number:  <input type="text"  placeholder="contact phone number" value={contact_phone_number} onChange={handlePhoneChange}></input> <br/>
+    description:  <input type="text"  placeholder="description about yourself" value={description} onChange={handleDescChange}></input> <br/>
     your experience: <input type="text" placeholder="years of experience" value={years_of_experience} onChange={handleYearsChange}></input> <br/>
     gitHub url:  <input type="text"  placeholder="linkdin url" value={linkdin_url} onChange={handleLinkDinChange}></input> <br/>
     linkdin url:  <input type="text"  placeholder="GitHub url" value={GitHub_url} onChange={handleGitHubChange}></input> <br/>
+    profile picture:  <input type="file" onChange={handleImageChange}></input> <br/><br/>
+    <h6 style={{color:"wheat"}}>we accepy only BMP, EPS, GIF, ICO, IM, JPEG, JPG, MSP, PCX, PNG, PPM, SGI, SPIDER, TIFF, WebP, and XBM fiels</h6> <br/>
    
-    <button type="submit" >send</button>  <br/>
+    <button className="btn btn-danger" type="submit" >send</button>  <br/>
 
       </form>
+      <br/><br/><br/><br/><br/>
     </div>
   )
 }

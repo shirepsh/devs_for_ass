@@ -143,13 +143,15 @@ def dev_profile(request,_id=-1):
         dev_2_upd = request.user
         try:
             temp_upd = Developer_details.objects.get(email_from_reg=dev_2_upd.email)
+            print("hfsuf")
             ser = DeveloperDetailsSerializer(instance=temp_upd, data=request.data)
             if ser.is_valid():
+                print("why not valid")
                 ser.save()
                 return Response(ser.data, status=status.HTTP_200_OK)
             return Response("NOT VALID", status=status.HTTP_400_BAD_REQUEST)
         except:
-            return Response(status=status.HTTP_400_BAD_REQUEST, data="association not found")
+            return Response(status=status.HTTP_400_BAD_REQUEST, data="devloper not found")
     
 
 # ######################################################################################################################
@@ -208,9 +210,11 @@ def association_profile(request,_id=-1):
          # the association that coneect (by email str)
         ass_2_upd = request.user
         try:
+            print("aaa")
             temp_upd = Association_details.objects.get(email_from_reg=ass_2_upd.email)
             ser = AssociationDetailsSerializer(instance=temp_upd, data=request.data)
             if ser.is_valid():
+                print("bbb")
                 ser.save()
                 return Response(ser.data, status=status.HTTP_200_OK)
             return Response("NOT VALID", status=status.HTTP_400_BAD_REQUEST)

@@ -27,9 +27,9 @@ const Navbar = () => {
     return (
         <div>
             <ul>
-                <li><Link to="/homePage">home page</Link></li>
-                <li><Link to="/developer">our developers</Link></li>
-                <li><Link to="/Association">our Associations</Link></li>
+                <li><Link to="/homePage" style={{color:"wheat"}}>home page</Link></li>
+                <li><Link to="/developer" style={{color:"wheat"}}>our developers</Link></li>
+                <li><Link to="/Association" style={{color:"wheat"}}>our Associations</Link></li>
 
                 {/* cheng between login to logout */}
                 <li style={{ backgroundColor:"green", float: "right" }}> {isLogged || IsAssLogged ? <div> 
@@ -37,26 +37,25 @@ const Navbar = () => {
                  onClick={() => dispatch(logOutAsync())}>LOGOUT</button></Link></div> : <Link to="/Login">LOGIN</Link>}</li>
 
                 {/* presentation the personal profile respectively */}
-                <li style={{ backgroundColor: "#1a8cff", float: "right" }}>
+                <li style={{float: "right"}}>
                      {isLogged && loggedTemp === "dev" ? 
-                     <Link to="/devPersonalProfile">your profile</Link> : ""} </li>
+                     <Link to="/devPersonalProfile" style={{color:"wheat"}}>your profile</Link> : ""} </li>
                 
-                <li style={{ backgroundColor: "#1a8cff", float: "right" }}>
+                <li style={{float: "right"}}>
                      {IsAssLogged && loggedTemp === "ass" ? 
-                     <Link to="/AssPersonalProfile">your profile</Link> : "" } </li>
+                     <Link to="/AssPersonalProfile" style={{color:"wheat"}}>your profile</Link> : "" } </li>
 
                 {/* presentation the personal posts */}
-                <li style={{ backgroundColor: "#1a8cff", float: "right" }}> 
+                <li style={{float: "right"}}> 
                 {IsAssLogged && loggedTemp === "ass" ? 
-                <Link to="/MyPosts">my posts</Link> : "" } </li>
+                <Link to="/MyPosts" style={{color:"wheat"}}>my posts</Link> : "" } </li>
 
                 {/* presentation the posts just to who did login*/}
                 <li> {isLogged && loggedTemp === "dev" ? 
-                <Link to="/Posts">find your volunteering</Link> : ""}</li> 
+                <Link to="/Posts" style={{color:"wheat"}}>find your volunteering</Link> : ""}</li> 
                 
                 <li>{IsAssLogged && loggedTemp === "ass" ?
-                 <Link to="/Posts">posts</Link> : "" } </li>
-
+                 <Link to="/Posts" style={{color:"wheat"}}> All posts</Link> : "" } </li>
             </ul> 
         </div>
     )

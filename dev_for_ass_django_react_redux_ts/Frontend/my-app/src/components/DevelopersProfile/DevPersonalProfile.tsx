@@ -27,10 +27,8 @@ function DevPersonalProfile() {
 
   return (
     <div>
-      <h4> Personal Profile </h4> <br />
-
-      {isLogged ?
-        <section style={{ backgroundColor: '#eee' }}>
+     {isLogged ?
+        <section >
           <MDBContainer className="py-5">
             <MDBRow>
               <MDBCol lg="4">
@@ -118,6 +116,7 @@ function DevPersonalProfile() {
           </MDBContainer>
         </section>
         : "you need to create your profile"}
+    
 
       {/* {tempDev.email_from_reg && <button className="btn btn-primary" style={{margin: '20px'}} 
             onClick={() => dispatch(delDevAsync(token))}>delete this profile</button>} */}

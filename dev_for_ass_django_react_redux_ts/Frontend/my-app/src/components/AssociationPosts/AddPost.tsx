@@ -7,8 +7,7 @@ import { selectAssEmailLogged, selectLoggedAss } from '../../slicers/developer/A
 import { selectToken} from '../../slicers/developer/developerSlice'
 import { addPost, selectLoggedAssPosts } from '../../slicers/developer/posts/postsSlice'
 import { useNavigate } from 'react-router-dom'
-
-
+import './Form.css'
 
 function AddPost() {
 
@@ -88,22 +87,22 @@ function AddPost() {
 
   return (
     <div> 
-      <h4>add post: </h4><br/>
+      <h4 style={{color:"wheat"}}>add post: </h4><br/>
 
-      <h6>In order to request help with a certain technology for your association</h6><br/>
+      <h6 style={{color:"wheat"}}>In order to request help with a certain technology for your association</h6><br/>
 
     {tempAss.association_name  ? 
-    <form onSubmit={handleImageUpload}>
-    association name: <input type="text"  placeholder="full name" value={association_name} onChange={handleNameChange}></input> <br/>
+    <form onSubmit={handleImageUpload} style={{color:"white"}}>
+    association name: <input type="text"  placeholder="association name" value={association_name} onChange={handleNameChange}></input> <br/>
     phone number for contact:  <input type="text"  placeholder="contact phone number" value={contact_phone_number} onChange={handlePhoneChange}></input> <br/>
-    post title:  <input type="text"  placeholder="post title" value={post_title} onChange={handlePostTitleChange}></input> <br/>
-    post description : <input type="text" placeholder="post_description" value={post_description} onChange={handlePostDescriptionChange}></input> <br/><br/>
-    <h6>we accepy only BMP, EPS, GIF, ICO, IM, JPEG, JPG, MSP, PCX, PNG, PPM, SGI, SPIDER, TIFF, WebP, and XBM fiels</h6> 
-    photo of your association:  <input type="file" onChange={handleImageChange}></input> <br/> 
+    post title:  <input type="text"  placeholder="for example: required website" value={post_title} onChange={handlePostTitleChange}></input> <br/>
+    post description : <input type="text" placeholder="for example: A fundraising site for the association " value={post_description} onChange={handlePostDescriptionChange}></input> <br/><br/>
+    photo of your association:  <input type="file" onChange={handleImageChange}></input> <br/> <br/>
+    <h6  style={{color:"wheat"}}>we accepy only BMP, EPS, GIF, ICO, IM, JPEG, JPG, MSP, PCX, PNG, PPM, SGI, SPIDER, TIFF, WebP, and XBM fiels</h6> <br/>
 
-    <button type="submit">send</button>  <br/>
+    <button className="btn btn-danger" type="submit">send</button>  <br/>
       </form> : "you need to create profile first"}
-
+      <br/><br/><br/><br/>
     </div>
   )
 }
@@ -111,7 +110,24 @@ function AddPost() {
 export default AddPost
 
 
-function then(arg0: () => { payload: any; type: "post/addPost" }) {
-  throw new Error('Function not implemented.')
-}
 
+// return (
+//   <div> 
+//     <h4 style={{color:"wheat"}}>add post: </h4><br/>
+
+//     <h6 style={{color:"wheat"}}>In order to request help with a certain technology for your association</h6><br/>
+
+//   {tempAss.association_name  ? 
+//   <form onSubmit={handleImageUpload} style={{color:"white"}}>
+//   association name: <input type="text"  placeholder="full name" value={association_name} onChange={handleNameChange}></input> <br/>
+//   phone number for contact:  <input type="text"  placeholder="contact phone number" value={contact_phone_number} onChange={handlePhoneChange}></input> <br/>
+//   post title:  <input type="text"  placeholder="post title" value={post_title} onChange={handlePostTitleChange}></input> <br/>
+//   post description : <input type="text" placeholder="post_description" value={post_description} onChange={handlePostDescriptionChange}></input> <br/><br/>
+//   <h6  style={{color:"wheat"}}>we accepy only BMP, EPS, GIF, ICO, IM, JPEG, JPG, MSP, PCX, PNG, PPM, SGI, SPIDER, TIFF, WebP, and XBM fiels</h6> 
+//   photo of your association:  <input type="file" onChange={handleImageChange}></input> <br/> 
+
+//   <button type="submit">send</button>  <br/>
+//     </form> : "you need to create profile first"}
+
+//   </div>
+// )

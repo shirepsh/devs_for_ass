@@ -25,6 +25,7 @@ function QandA() {
       A : with ease! After you have created a user, the option of creating a post will open before you, <br/>
       fill in the details and publish. From that moment the post will be available to all developers
     </div>
+    <br/><br/><br/>
     </>
   )
 }

@@ -25,7 +25,7 @@ const Login = () => {
     return (
         <div>
 
-            <h4 style={{ textAlign: "center", color: "black" }}> login:</h4>
+            <h4 style={{ textAlign: "center", color: "wheat" }}> login:</h4>
             {isLogged && 'welcome: ' + username}
             <Form>
             <Form.Group>
@@ -48,7 +48,7 @@ const Login = () => {
                     </Form.Control>
                 </Form.Group>
 
-                <Button  className="btn btn-outline-success" style={{margin: '20px' , color:"white"}} 
+                <Button className="btn btn-outline-success" style={{margin: '20px' , color:"wheat"}} 
                     onClick={() => {
                     if (username != null && password != null ){
                     dispatch(loginAsync({ username, password }))
@@ -58,22 +58,17 @@ const Login = () => {
                 }}>Login</Button>
                  <ToastContainer/>
                 </Form>
-
-        
-            {/* User name: <input onChange={(e) => setuname(e.target.value)} /> */}
-            {/* Password: <input type='password' onChange={(e) => setpassword(e.target.value)} /> */}
-            {/* <button  className="btn btn-outline-success" style={{margin: '20px'}} onClick={() => dispatch(loginAsync({ username, password }))}>Login</button> */}
-
             <br />
 
-            <h5>dont have an user? sign up!</h5>
+            <h5 style={{color:"wheat"}}>dont have an user? sign up!</h5>
             <Link to="/devReg">
                 <button className="btn btn-primary" style={{marginRight:20}}>register as developer</button>
             </Link>
 
             <Link to="/AssReg">
-                <button className="btn btn-primary">register as association</button>
-            </Link>
+                <button className="btn btn-primary">register as association</button> 
+            </Link> 
+            <br/><br/><br/><br/>
         </div>
     );
 };

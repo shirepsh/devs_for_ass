@@ -4,6 +4,7 @@ import { useAppSelector } from '../../app/hooks'
 import { MYSERVER } from '../../env'
 import { selectAssEmailLogged, selectLoggedAss } from '../../slicers/developer/Association/associationSlice'
 import { selectToken } from '../../slicers/developer/developerSlice'
+import './Form.css'
 
 function EditAssProfile() {
 
@@ -66,16 +67,16 @@ function EditAssProfile() {
 
   return (
     <div>
-      <h4> Edit your Profile </h4>
+      <h4 style={{color:"wheat"}}> Edit your Profile </h4>
 
-      <form onSubmit={handleImageUpload}>   
-    your association name: <input type="text"  placeholder="association name" value={association_name} onChange={handleNameChange}></input> <br/><br/>
-    <h6>we accepy only BMP, EPS, GIF, ICO, IM, JPEG, JPG, MSP, PCX, PNG, PPM, SGI, SPIDER, TIFF, WebP, and XBM fiels</h6> 
-    profile picture:  <input type="file" onChange={handleImageChange}></input> <br/> 
+      <form onSubmit={handleImageUpload} style={{color:"white"}}>   
+    your association name: <input type="text"  placeholder="association name" value={association_name} onChange={handleNameChange}></input> <br/>
     description:  <input type="text"  placeholder="description" value={description} onChange={handleDescChange}></input> <br/>
     location:  <input type="text"  placeholder="location" value={location} onChange={handleLocationChange}></input> <br/>
+    profile picture:  <input type="file" onChange={handleImageChange}></input> <br/><br/>
+    <h6 style={{color:"wheat"}}>we accepy only BMP, EPS, GIF, ICO, IM, JPEG, JPG, MSP, PCX, PNG, PPM, SGI, SPIDER, TIFF, WebP, and XBM fiels</h6> <br/>
 
-    <button type="submit">send</button>  <br/>
+    <button className="btn btn-danger" type="submit">send</button>  <br/>
       </form>
 
 

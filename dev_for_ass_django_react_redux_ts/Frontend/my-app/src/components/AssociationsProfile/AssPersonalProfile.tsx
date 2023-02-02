@@ -26,10 +26,8 @@ function AssPersonalProfile() {
 
     return (
         <div>
-            <h4> Personal Profile </h4> <br />
-
     {isLogged ?
-    <section style={{ backgroundColor: '#eee' }}>
+    <section >
       <MDBContainer className="py-5">
         <MDBRow>
           <MDBCol lg="4">
@@ -103,7 +101,7 @@ function AssPersonalProfile() {
         </MDBRow>
       </MDBContainer>
     </section>
-    : "you need to create your profile"}
+    : "you need to create your profile"} 
 
         </div>
     )

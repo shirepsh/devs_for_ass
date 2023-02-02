@@ -7,6 +7,7 @@ import { AssRegAsync, selectIsAssLogged, selectToken } from "../../slicers/devel
 import { loginAsync } from "../../slicers/developer/developerSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import './Form.css'
 
 const AssReg = () => {
 
@@ -34,13 +35,13 @@ const AssReg = () => {
 
     return (
         <div> 
-            <h4 style={{textAlign: "center" , color: "violet"}}> dont have an user? sign up:</h4>
+            <h4 style={{textAlign: "center" , color: "lightblue"}}> dont have an user? sign up:</h4>
             <hr/>
             User name: <input onChange={(e) => setuname(e.target.value)} required />
             Password: <input type="password" onChange={(e) => setpassword(e.target.value)} required />
-            email: <input onChange={(e) => setemail(e.target.value)} required/>
+            email: <input onChange={(e) => setemail(e.target.value)} required/> <br/><br/>
 
-            <button onClick={() => {
+            <button className="btn btn-danger" onClick={() => {
                 if (username != null && password != null && email != null) {
                 dispatch(AssRegAsync({username, password, email}))
             }

@@ -34,7 +34,6 @@ class Association_details(models.Model):
     description = models.CharField(max_length = 255, null = True, blank = True)
     contact_info = models.CharField(max_length = 255, null = True, blank = True)
     location = models.CharField(max_length = 255, null = True, blank = True)
-    image = models.ImageField(null=True,blank=True,default='/placeholder.png')
 
     def __str__(self):
         return self.association_name
