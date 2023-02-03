@@ -119,7 +119,7 @@ export const developerSlice = createSlice({
       localStorage.setItem("token", JSON.stringify(state.token))
       state.IsLogged = true
       state.loggedDev = {email_from_reg: ""}
-
+    
     }).addCase(logOutAsync.fulfilled, (state, action) => {
       state.token = ""
       localStorage.clear()

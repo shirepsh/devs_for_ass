@@ -4,6 +4,7 @@ import {  useAppSelector } from '../../app/hooks'
 import { MYSERVER } from '../../env'
 import {  selectEmailLogged, selectToken} from '../../slicers/developer/developerSlice'
 import { useNavigate } from 'react-router-dom'
+import '../Other/Form.css'
 
 function AddDeveloper() {
 

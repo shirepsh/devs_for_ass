@@ -79,7 +79,6 @@ def getEmail(request):
         try:
             # user that coneccted == the email of the user are connected (by email str)
             user= request.user
-            print(user)
             serializer = CustomUserSerializer(CustomUser.objects.get(email = user))
         except:
                 return Response(status=status.HTTP_400_BAD_REQUEST, data="not found")
@@ -104,7 +103,6 @@ def get_my_developer_profile(request):
         try:
             # user that coneccted == the email of the user are connected (by email str)
             user= request.user
-            print(user)
             serializer = DeveloperDetailsSerializer(Developer_details.objects.get(email_from_reg = user))
         except:
                 return Response(status=status.HTTP_400_BAD_REQUEST, data="dev not found")
@@ -129,7 +127,7 @@ def dev_profile(request,_id=-1):
     elif request.method == "DELETE":
         # the dev that coneect (by email str)
         dev_2_del = request.user
-        print(request.user)
+        # print(request.user)
         try:
             dev = Developer_details.objects.get(email_from_reg=dev_2_del)
             dev.delete()
@@ -142,8 +140,8 @@ def dev_profile(request,_id=-1):
          # the association that coneect (by email str)
         dev_2_upd = request.user
         try:
-            temp_upd = Developer_details.objects.get(email_from_reg=dev_2_upd.email)
-            print("hfsuf")
+            print("aaa")
+            temp_upd = Developer_details.objects.get(email_from_reg=dev_2_upd)
             ser = DeveloperDetailsSerializer(instance=temp_upd, data=request.data)
             if ser.is_valid():
                 print("why not valid")
@@ -197,7 +195,7 @@ def association_profile(request,_id=-1):
     elif request.method == "DELETE":
         # the association that coneect (by email str)
         ass_2_del = request.user
-        print(request.user)
+        # print(request.user)
         try:
             association = Association_details.objects.get(email_from_reg=ass_2_del)
             association.delete()
@@ -242,9 +240,9 @@ def get_my_association_posts(request):
         try:
             # user that coneccted == the email of the user are connected (by email str)
             user= request.user
-            print(user)
+            # print(user)
             serializer = PostsSerializer(Posts_of_the_associations.objects.filter(email_from_reg = user), many=True)
-            print(serializer)
+            # print(serializer)
         except:
                 return Response(status=status.HTTP_400_BAD_REQUEST, data="post not found")
         return Response(status=status.HTTP_200_OK, data=serializer.data)

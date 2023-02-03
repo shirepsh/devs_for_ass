@@ -1,6 +1,6 @@
 export default class Developer{
     id?:number
-    email_from_reg: any = "" 
+    email_from_reg?: any = "" 
     profile_picture?: any = "" 
     full_name?:any = ""
     contact_phone_number?: any = ""

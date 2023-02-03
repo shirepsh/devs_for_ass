@@ -5,7 +5,7 @@ import { MYSERVER } from '../../env'
 import { selectAssEmailLogged } from '../../slicers/developer/Association/associationSlice'
 import { selectToken } from '../../slicers/developer/developerSlice'
 import { useNavigate } from 'react-router-dom'
-import './Form.css'
+import '../Other/Form.css'
 
 function AddAssProfile() {
 

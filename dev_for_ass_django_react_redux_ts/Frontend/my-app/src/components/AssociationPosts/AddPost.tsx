@@ -5,16 +5,15 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { MYSERVER } from '../../env'
 import { selectAssEmailLogged, selectLoggedAss } from '../../slicers/developer/Association/associationSlice'
 import { selectToken} from '../../slicers/developer/developerSlice'
-import { addPost, selectLoggedAssPosts } from '../../slicers/developer/posts/postsSlice'
+import { addPost } from '../../slicers/developer/posts/postsSlice'
 import { useNavigate } from 'react-router-dom'
-import './Form.css'
+import '../Other/Form.css'
 
 function AddPost() {
 
   const dispatch = useAppDispatch()
   
   const tempAss = useAppSelector(selectLoggedAss)
-  const tempAssPosts = useAppSelector(selectLoggedAssPosts)
   const token = useAppSelector(selectToken)
   const email = useAppSelector(selectAssEmailLogged)
 

@@ -10,7 +10,6 @@ import { Developer } from "./components/DevelopersProfile/Developer";
 import HomePage from "./components/Other/HomePage";
 import AddDeveloper from "./components/DevelopersProfile/AddDevProfile";
 import DevPersonalProfile from "./components/DevelopersProfile/DevPersonalProfile";
-import Login from "./components/Login";
 import EditDevProfile from "./components/DevelopersProfile/EditDevProfile";
 import DevReg from "./components/DevelopersProfile/DevReg";
 import AssReg from "./components/AssociationsProfile/AssReg";
@@ -23,6 +22,8 @@ import QandA from "./components/Other/QandA";
 import Posts from "./components/AssociationPosts/Posts";
 import MyPosts from "./components/AssociationPosts/MyPosts";
 import AddPost from "./components/AssociationPosts/AddPost";
+import Login from "./components/Other/Login";
+
 
 const container = document.getElementById('root')!;
 const root = createRoot(container)
@@ -38,8 +39,8 @@ root.render(
             <Route index element={<HomePage />} /> 
             <Route path="/homePage" element={<HomePage/>} />
             <Route path="/AboutUs" element={<AboutUs/>} />
-            <Route path="/login" element={<Login />} />
             <Route path="/QandA" element={<QandA />} />
+            <Route path="/login" element={<Login />} />
 
             <Route path="/devReg" element={<DevReg />} />
             <Route path="/developer" element={<Developer />} />

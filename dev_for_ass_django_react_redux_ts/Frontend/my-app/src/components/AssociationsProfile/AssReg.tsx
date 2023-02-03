@@ -7,7 +7,7 @@ import { AssRegAsync, selectIsAssLogged, selectToken } from "../../slicers/devel
 import { loginAsync } from "../../slicers/developer/developerSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import './Form.css'
+import '../Other/Form.css'
 
 const AssReg = () => {
 

@@ -43,9 +43,9 @@ function DevPersonalProfile() {
                   </MDBCardBody>
                   <div className="d-flex justify-content-center mb-2">
                     {tempDev.linkdin_url ?
-                      <a style={{ marginRight: '.5rem' }} href={tempDev.linkdin_url}>Linkdin</a> : ""}
+                      <a style={{ marginRight: '.5rem', color:"wheat" }} href={tempDev.linkdin_url}>Linkdin</a> : ""}
                     {tempDev.GitHub_url ?
-                      <a style={{ marginLeft: '.5rem' }} href={tempDev.GitHub_url}>GitHub</a> : ""}
+                      <a style={{ marginLeft: '.5rem', color:"wheat"  }} href={tempDev.GitHub_url}>GitHub</a> : ""}
                   </div>
                 </MDBCard>
               </MDBCol>

@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { DevRegAsync, loginAsync, selectIsLogged, selectToken } from '../../slicers/developer/developerSlice'
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import '../Other/Form.css'
 
 const DevReg = () => {
 

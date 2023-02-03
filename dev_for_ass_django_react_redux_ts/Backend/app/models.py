@@ -16,8 +16,8 @@ class Developer_details(models.Model):
     email_from_reg = models.CharField(max_length = 255, null = False, blank = False)
     profile_picture = models.ImageField(null=True,blank=True,default='/placeholder.png')
     full_name = models.CharField(max_length = 255, null = True, blank = True)
-    years_of_experience = models.IntegerField(null = True, blank = True)
-    description = models.CharField(max_length = 255, null = True, blank = True)
+    years_of_experience = models.CharField(max_length = 255, null = True, blank = True)
+    description = models.CharField(max_length = 16, null = True, blank = True)
     contact_phone_number = models.CharField(max_length = 255, null = True, blank = True)
     linkdin_url = models.CharField(max_length = 255, null = True, blank = True)
     GitHub_url = models.CharField(max_length = 255, null = True, blank = True)
@@ -31,7 +31,7 @@ class Association_details(models.Model):
     email_from_reg = models.CharField(max_length = 255, null = False, blank = False)
     profile_picture = models.ImageField(null=True,blank=True,default='/placeholder.png')
     association_name = models.CharField(max_length = 255, null = True, blank = True)
-    description = models.CharField(max_length = 255, null = True, blank = True)
+    description = models.CharField(max_length = 16, null = True, blank = True)
     contact_info = models.CharField(max_length = 255, null = True, blank = True)
     location = models.CharField(max_length = 255, null = True, blank = True)
 
@@ -41,7 +41,7 @@ class Association_details(models.Model):
 # posts of associations table
 class Posts_of_the_associations(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True )
-    post = models.ForeignKey(Association_details, on_delete=models.CASCADE , null=True )
+    post = models.ForeignKey(Association_details, on_delete=models.SET_NULL , null=True )
     association_name = models.CharField(max_length = 255, null = True, blank = True)
     email_from_reg = models.CharField(max_length = 255, null = False, blank = False)
     post_title = models.CharField(max_length = 255, null = True, blank = True)
