@@ -67,7 +67,7 @@ function MyPosts() {
                       <div className="card-body">
                         <p className="card-text">  {onePost.post_description}</p>
                         <h6 className="card-subtitle mb-2 text-muted">{onePost.contact_phone_number}</h6>
-                        <img src={"http://127.0.0.1:8000" + onePost.photo} className="card-img-top" alt="..."></img> <br/><br/>
+                        <img src={"http://127.0.0.1:8000" + onePost.photo} className="card-img-top" alt="..."></img> <br /><br />
                         <button className="btn btn-danger" onClick={() => handelDel(token, onePost.id)}>delete this post</button>
                       </div>
                     </div>
@@ -82,7 +82,10 @@ function MyPosts() {
       </div>)
   }
   else return (
-    <h6 style={{ color: "wheat" }}> association not found, <br /><br /> you need to create a profile</h6>
+    <div><h6 style={{ color: "wheat" }}> association not found, <br/><br/> you need to create a profile</h6> <br/><br/>
+      <Link to="/addAss">
+        <button className="btn btn-primary">to create a profile</button>
+      </Link></div>
   )
 }
 
