@@ -57,10 +57,6 @@ function AddPost() {
         setPostDescription(event.target.value);
     };
 
-    // const handleProfileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //   setProfilePicture(event.target.files![0]);
-    // };
-
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPhoto(event.target.files![0]);
     };
@@ -92,10 +88,10 @@ function AddPost() {
 
     {tempAss.association_name  ? 
     <form onSubmit={handleImageUpload} style={{color:"white"}}>
-    association name: <input type="text"  placeholder="association name" value={association_name} onChange={handleNameChange}></input> <br/>
-    phone number for contact:  <input type="text"  placeholder="contact phone number" value={contact_phone_number} onChange={handlePhoneChange}></input> <br/>
-    post title:  <input type="text"  placeholder="for example: required website" value={post_title} onChange={handlePostTitleChange}></input> <br/>
-    post description : <input type="text" placeholder="for example: A fundraising site for the association " value={post_description} onChange={handlePostDescriptionChange}></input> <br/><br/>
+    association name: <input type="text"  placeholder="alut team" value={association_name} onChange={handleNameChange}></input> <br/>
+    phone number for contact:  <input type="text"  placeholder="050-555-5555" value={contact_phone_number} onChange={handlePhoneChange}></input> <br/>
+    post title:  <input type="text"  placeholder="required website" value={post_title} onChange={handlePostTitleChange}></input> <br/>
+    post description : <input type="text" placeholder=" A fundraising site for the association /// until 64 characters "  maxLength={64} value={post_description} onChange={handlePostDescriptionChange}></input> <br/><br/>
     photo of your association:  <input type="file" onChange={handleImageChange}></input> <br/> <br/>
     <h6  style={{color:"wheat"}}>we accepy only BMP, EPS, GIF, ICO, IM, JPEG, JPG, MSP, PCX, PNG, PPM, SGI, SPIDER, TIFF, WebP, and XBM fiels</h6> <br/>
 

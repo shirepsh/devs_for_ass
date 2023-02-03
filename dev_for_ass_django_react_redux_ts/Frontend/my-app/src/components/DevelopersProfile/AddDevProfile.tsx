@@ -90,9 +90,9 @@ function AddDeveloper() {
       <h6 style={{color:"wheat"}}> By doing this you can offer your skills to the various associations</h6><br/>
 
     <form onSubmit={handleImageUpload} style={{color:"white"}}>   
-    your full name: <input type="text"  placeholder="full name" value={full_name} onChange={handleNameChange}></input> <br/>
-    phone number:  <input type="text"  placeholder="contact phone number" value={contact_phone_number} onChange={handlePhoneChange}></input> <br/>
-    description:  <input type="text"  placeholder="description about yourself" value={description} onChange={handleDescChange}></input> <br/>
+    your full name: <input type="text"  placeholder="shir epshtain" value={full_name} onChange={handleNameChange}></input> <br/>
+    phone number:  <input type="text"  placeholder="050-555-5555" value={contact_phone_number} onChange={handlePhoneChange}></input> <br/>
+    description about yourself:  <input type="text"  placeholder="until 64 characters" value={description} maxLength={64} onChange={handleDescChange}></input> <br/>
     your experience: <input type="text" placeholder="years of experience" value={years_of_experience} onChange={handleYearsChange}></input> <br/>
     gitHub url:  <input type="text"  placeholder="linkdin url" value={linkdin_url} onChange={handleLinkDinChange}></input> <br/>
     linkdin url:  <input type="text"  placeholder="GitHub url" value={GitHub_url} onChange={handleGitHubChange}></input> <br/>

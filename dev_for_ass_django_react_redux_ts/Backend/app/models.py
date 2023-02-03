@@ -17,7 +17,7 @@ class Developer_details(models.Model):
     profile_picture = models.ImageField(null=True,blank=True,default='/placeholder.png')
     full_name = models.CharField(max_length = 255, null = True, blank = True)
     years_of_experience = models.CharField(max_length = 255, null = True, blank = True)
-    description = models.CharField(max_length = 16, null = True, blank = True)
+    description = models.CharField(max_length = 255, null = True, blank = True)
     contact_phone_number = models.CharField(max_length = 255, null = True, blank = True)
     linkdin_url = models.CharField(max_length = 255, null = True, blank = True)
     GitHub_url = models.CharField(max_length = 255, null = True, blank = True)
@@ -31,7 +31,7 @@ class Association_details(models.Model):
     email_from_reg = models.CharField(max_length = 255, null = False, blank = False)
     profile_picture = models.ImageField(null=True,blank=True,default='/placeholder.png')
     association_name = models.CharField(max_length = 255, null = True, blank = True)
-    description = models.CharField(max_length = 16, null = True, blank = True)
+    description = models.CharField(max_length = 255, null = True, blank = True)
     contact_info = models.CharField(max_length = 255, null = True, blank = True)
     location = models.CharField(max_length = 255, null = True, blank = True)
 

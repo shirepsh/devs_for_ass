@@ -74,9 +74,9 @@ function AddAssProfile() {
       <h6 style={{color:"wheat"}}>By doing this you will be able to present your association <br/> for the developers to choose from</h6> <br/>
 
       <form onSubmit={handleImageUpload} style={{color:"white"}}>
-        your association name: <input type="text" placeholder="association name" value={association_name} onChange={handleNameChange} required></input> <br/>
-        description:  <input type="text" placeholder="description of your association" value={description} onChange={handleDescChange}></input> <br />
-        location:  <input type="text" placeholder="for example: Tel Aviv, Isreal" value={location} onChange={handleLocationChange}></input> <br />
+        your association name: <input type="text" placeholder="alut team" value={association_name} onChange={handleNameChange} required></input> <br/>
+        description about the association:  <input type="text" placeholder="until 64 characters" value={description} maxLength={64} onChange={handleDescChange}></input> <br />
+        location:  <input type="text" placeholder="Tel Aviv, Israel" value={location} onChange={handleLocationChange}></input> <br />
         profile picture:  <input type="file" onChange={handleImageChange}></input> <br/><br/>
         <h6 style={{color:"wheat"}}>we accepy only BMP, EPS, GIF, ICO, IM, JPEG, JPG, MSP, PCX, PNG, PPM, SGI, SPIDER, TIFF, WebP, and XBM fiels</h6> <br/>
 

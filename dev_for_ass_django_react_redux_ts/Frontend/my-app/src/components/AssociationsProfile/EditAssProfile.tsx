@@ -67,15 +67,16 @@ function EditAssProfile() {
     }
 
     axios.put(MYSERVER + "ass", formData, config).then(()=> setFlag(true))}
+ 
 
 return (
   <div>
     <h4 style={{ color: "wheat" }}> Edit your Profile </h4>
 
     <form onSubmit={handleImageUpload} style={{ color: "white" }}>
-      your association name: <input type="text" placeholder="association name" value={association_name} onChange={handleNameChange}></input> <br />
-      description:  <input type="text" placeholder="description" value={description} onChange={handleDescChange}></input> <br />
-      location:  <input type="text" placeholder="location" value={location} onChange={handleLocationChange}></input> <br />
+      your association name: <input type="text" placeholder="alut name" value={association_name} onChange={handleNameChange}></input> <br />
+      description about the association:  <input type="text" placeholder="until 64 characters" value={description} maxLength={64} onChange={handleDescChange}></input> <br />
+      location:  <input type="text" placeholder="Tel Aviv, Israel" value={location} onChange={handleLocationChange}></input> <br />
       profile picture:  <input type="file" onChange={handleImageChange}></input> <br /><br />
       <h6 style={{ color: "wheat" }}>we accepy only BMP, EPS, GIF, ICO, IM, JPEG, JPG, MSP, PCX, PNG, PPM, SGI, SPIDER, TIFF, WebP, and XBM fiels</h6> <br />
 
