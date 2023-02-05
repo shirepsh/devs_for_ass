@@ -59,7 +59,6 @@ const Login = () => {
   return (
     <div>
       <h4 style={{ textAlign: "center", color: "wheat" }}> login:</h4>
-      {/* {isLogged && 'welcome: ' + username} */}
       <Form>
         <Form.Group>
           <Form.Label>User </Form.Label>

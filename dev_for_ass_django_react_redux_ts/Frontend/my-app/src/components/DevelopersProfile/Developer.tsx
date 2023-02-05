@@ -31,7 +31,7 @@ export const Developer = () => {
                       <h5 className="card-title"> {dev.full_name}</h5>
                       <h6 className="card-subtitle mb-2 text-muted">{dev.email_from_reg} <br /> {dev.contact_phone_number}</h6>
                       <p className="card-text"> years of experience : {dev.years_of_experience} <br/> {dev.description}</p>
-                      <p className="card-text"> <a style={{ color:"wheat" }} href={dev.linkdin_url}>Linkdin</a> <a style={{ color:"wheat", marginRight: '.5rem'}} href={dev.GitHub_url}>GitHub</a></p>
+                      <p className="card-text"> {dev.linkdin_url ?  <a style={{ color:"wheat" }} href={dev.linkdin_url}>Linkdin</a>: ""}  {dev.GitHub_url ? <a style={{ color:"wheat", marginRight: '.5rem'}} href={dev.GitHub_url}>GitHub</a> : ""} </p> 
                     </div>
                   </div>
                 </div>

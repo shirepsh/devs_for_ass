@@ -26,28 +26,21 @@ function HomePage() {
         <Carousel.Item>
           <img
             className="d-block w-100 "
-            src="vol2.jpeg"
+            src="vol4.jpg"
             alt=""
           />
 
           <Carousel.Caption>
-            {/* <h3 style={{ color: "black", fontSize: "xl" }}> people help people</h3> */}
+          <h4 style={{ color: "black" }}>Seniors? <br/><br/> Let's donate to the various associations in the country in the thing that you are the best at! </h4>
             {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> */}
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="vol4.jpg"
+            src="vol2.jpeg"
             alt=""
           />
-
-          <Carousel.Caption>
-            {/* <h3 style={{ color: "white" }}>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p> */}
-          </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
       </div>

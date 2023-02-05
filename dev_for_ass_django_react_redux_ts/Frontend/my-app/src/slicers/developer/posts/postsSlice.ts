@@ -70,7 +70,7 @@ export const postsSlice = createSlice({
       state.loggedAssPosts = action.payload
       
     }).addCase(delPostAsync.fulfilled, (state, action) => {
-      console.log("deleted")
+      // console.log("deleted")
       // console.log("find", current(state.Posts))
       // console.log('new' ,current(state.loggedAssPosts))
       // console.log("id", action.payload)
