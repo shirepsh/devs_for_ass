@@ -106,11 +106,23 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
+
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        # always
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': 'team_db',
+
+        'USER': 'team_db_user',
+
+        'PASSWORD': "9zKXGlqScnkcNYhy82KCdoNuCCvKYkQE",
+        
+        'HOST':'dpg-cfftcv1a6gdma8le914g-a.oregon-postgres.render.com',
+
+        # unless specified- always
+        'PORT': "5432"}
 }
+
 
 
 # Password validation
