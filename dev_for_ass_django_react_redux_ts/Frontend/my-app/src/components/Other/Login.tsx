@@ -88,11 +88,11 @@ const Login = () => {
 
       <h5 style={{ color: "wheat" }}>dont have an user? sign up!</h5>
       <Link to="/devReg">
-        <button className="btn btn-primary" style={{ marginRight: 20 }}>register as developer</button>
+        <button className="btn btn-primary" style={{ marginRight: 20, color:"white"}}>register as developer</button>
       </Link>
 
       <Link to="/AssReg">
-        <button className="btn btn-primary">register as association</button>
+        <button className="btn btn-primary" style={{color:"white"}}>register as association</button>
       </Link>
       <br /><br /><br /><br />
     </div>

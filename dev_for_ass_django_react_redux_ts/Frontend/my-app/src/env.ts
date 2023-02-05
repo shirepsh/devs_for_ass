@@ -1,1 +1,1 @@
-export const MYSERVER="http://127.0.0.1:8000/app/"
+export const MYSERVER="https://teamthing.onrender.com/app/"
