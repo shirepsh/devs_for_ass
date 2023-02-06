@@ -11,6 +11,7 @@ import {
   MDBCardBody,
   MDBCardImage
 } from 'mdb-react-ui-kit';
+import { ImageSERVER } from '../../env';
 
 
 function DevPersonalProfile() {
@@ -35,7 +36,7 @@ function DevPersonalProfile() {
                 <MDBCard className="mb-4">
                   <MDBCardBody className="text-center">
                     <MDBCardImage
-                      src={"http://127.0.0.1:8000" + tempDev.profile_picture}
+                      src={ImageSERVER + tempDev.profile_picture}
                       alt="profile picture"
                       className="rounded-circle"
                       style={{ width: '150px' }}

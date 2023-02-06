@@ -3,6 +3,7 @@ import { Card, ListGroup } from 'react-bootstrap'
 import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import { selectPost, getAllPostsAsync } from '../../slicers/developer/posts/postsSlice'
 import { Col, Row } from 'react-bootstrap';
+import { ImageSERVER } from '../../env';
 
 function Posts() {
 
@@ -28,7 +29,7 @@ function Posts() {
                     <div className="card-body">
                       <p className="card-text">  {onePost.post_description}</p> 
                       <h6 className="card-subtitle mb-2 text-muted">{onePost.contact_phone_number}</h6>
-                      <img  src={"http://127.0.0.1:8000" + onePost.photo}  className="card-img-top" alt="..."></img>
+                      <img  src={ImageSERVER + onePost.photo}  className="card-img-top" alt="..."></img>
                     </div>
                   </div>
                 </div>
@@ -46,30 +47,4 @@ export default Posts
 
 
 
-  // < Row lg = { 4} >
-  // {
-  //   posts.map((onePost: any, index: any) =>
-  //     <div key={index}>
-  //       <div >
-  //         <Col className="d-flex">
-  //           <Card style={{ width: '18rem' }}>
-  //             <Card.Body>
-  //               <Card.Title style={{ color: 'blue' }}> {onePost.association_name}</Card.Title>
-  //               <Card.Text>
-  //                 {onePost.post_title} <br />
-  //                 {onePost.post_description}
-  //               </Card.Text>
-  //             </Card.Body>
-  //             <ListGroup className="list-group-flush">
-  //               <ListGroup.Item>{onePost.contact_phone_number}</ListGroup.Item>
-  //               {/* <Card.Img variant="top" src={"http://127.0.0.1:8000" + onePost.photo} alt="" /> */}
-  //               <ListGroup.Item><Card.Img style={{ height: "150px", width: "200px" }} variant="top" src={"http://127.0.0.1:8000" + onePost.photo} alt="" /> </ListGroup.Item>
-
-  //             </ListGroup>
-  //           </Card>
-  //         </Col>
-  //       </div>
-
-  //     </div>)
-  // }
-  //   </Row > 
+  

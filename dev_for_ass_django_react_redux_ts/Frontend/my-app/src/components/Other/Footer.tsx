@@ -17,16 +17,16 @@ const Footer = () => {
             {/* FaFacebook , FaInstagram, FaLinkedin, FaGithub  */}
             <div className="col-lg-4 mb-5 mb-lg-0 ">
               <h6  style={{color:"wheat"}}>Around the Web</h6>
-              <a className="btn-social mx-1" style={{color:"white"}}  href="#!">
+              <a className="btn-social mx-1" style={{color:"white"}}  href="https://www.facebook.com/shir.epshtein.1?mibextid=LQQJ4d">
                 <FaFacebook />
               </a>
-              <a className="btn-social mx-1" style={{color:"white"}} href="#!">
+              <a className="btn-social mx-1" style={{color:"white"}} href="https://instagram.com/_shirepshtein?igshid=MDM4ZDc5MmU=">
                 <FaInstagram />
               </a>
-              <a className="btn-social mx-1" style={{color:"white"}}  href="#!">
+              <a className="btn-social mx-1" style={{color:"white"}}  href="https://www.linkedin.com/in/shir-epshtain/">
                 <FaLinkedin />
               </a>
-              <a className="btn-social mx-1" style={{color:"white"}} href="#!">
+              <a className="btn-social mx-1" style={{color:"white"}} href="https://github.com/shirepsh">
                 <FaGithub/>
               </a>
             </div>

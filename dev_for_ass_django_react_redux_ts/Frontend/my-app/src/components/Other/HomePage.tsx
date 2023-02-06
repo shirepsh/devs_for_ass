@@ -15,13 +15,9 @@ function HomePage() {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="vol3.jpeg"
+            src="Developer.png"
             alt="First slide"
           />
-          <Carousel.Caption>
-            <h4 style={{ color: "black" }}>Juniors? <br/><br/> Come and develop your experience by volunteering in our various associations </h4>
-            {/* <p style={{ color: "yellow" , backgroundColor: 'black'}}>Come and develop your experience by volunteering in our various associations</p> */}
-          </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
@@ -29,11 +25,6 @@ function HomePage() {
             src="vol2.jpeg"
             alt=""
           />
-
-          <Carousel.Caption>
-            {/* <h3 style={{ color: "black", fontSize: "xl" }}> people help people</h3> */}
-            {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> */}
-          </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
@@ -41,13 +32,6 @@ function HomePage() {
             src="vol4.jpg"
             alt=""
           />
-
-          <Carousel.Caption>
-            {/* <h3 style={{ color: "white" }}>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p> */}
-          </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
       </div>

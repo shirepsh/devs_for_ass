@@ -16,40 +16,64 @@ const AssReg = () => {
     const token = useAppSelector(selectToken)
     const notify = () => toast("you need to fill the fields!")
 
-    const navigate = useNavigate()
-
     // use state for user details for register
     const [username, setuname] = useState<string | null>(null)
     const [password, setpassword] = useState<string | null>(null)
     const [email, setemail] = useState<string | null>(null)
 
+    // navigate between register to login
+    const navigate = useNavigate()
+    const [flagk, setFlagk] = useState(false)
+
     useEffect(() => {
-        if (IsAssLogged) {
-            if (token === ''  && username && password) {
-                dispatch(loginAsync({ username, password }))
-            }
-            navigate('/homePage')
-        }
-    }, [IsAssLogged, token, navigate])
-    
+        if (flagk) {navigate('/login')}
+    }, [flagk])
+
+    // useEffect(() => {
+    //     if (IsAssLogged) {
+    //         if (token === ''  && username && password) {
+    //             dispatch(loginAsync({ username, password }))
+    //         }
+    //         navigate('/login')
+    //     }
+    // }, [IsAssLogged, token, navigate])
+
+
+    // use effect to the user that logged in
+    // useEffect(() => {
+    //     if (flagk) {
+    //         toast("thank you for sign up, " + `${username} 🎉`, {
+    //             position: "top-center",
+    //             autoClose: 2000,
+    //             hideProgressBar: false,
+    //             closeOnClick: true,
+    //             rtl: false,
+    //             pauseOnFocusLoss: true,
+    //             draggable: true,
+    //             pauseOnHover: true,
+    //             theme: "light"
+    //         });
+    //     }
+    // }, []);
+
 
     return (
-        <div> 
-            <h4 style={{textAlign: "center" , color: "lightblue"}}> dont have an user? sign up:</h4>
-            <hr/>
+        <div>
+            <h4 style={{ textAlign: "center", color: "lightblue" }}> dont have an user? sign up:</h4>
+            <hr />
             User name: <input onChange={(e) => setuname(e.target.value)} required />
             Password: <input type="password" onChange={(e) => setpassword(e.target.value)} required />
-            email: <input onChange={(e) => setemail(e.target.value)} required/> <br/><br/>
+            email: <input onChange={(e) => setemail(e.target.value)} required /> <br /><br />
 
             <button className="btn btn-danger" onClick={() => {
                 if (username != null && password != null && email != null) {
-                dispatch(AssRegAsync({username, password, email}))
-            }
-            else {notify ()}
+                    dispatch(AssRegAsync({ username, password, email })).then(() => setFlagk(true))
+                }
+                else { notify() }
             }}>Register</button>
-             <ToastContainer/>
-             <hr></hr>
-             
+            <ToastContainer />
+            <hr></hr>
+
             {IsAssLogged && 'thank you for sign up association' + username}
         </div>
     )

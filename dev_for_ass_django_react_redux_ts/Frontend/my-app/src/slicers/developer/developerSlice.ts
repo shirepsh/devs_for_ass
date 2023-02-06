@@ -111,14 +111,14 @@ export const developerSlice = createSlice({
   // the answers for the async functions
   extraReducers: (builder) => {
     builder.addCase(DevRegAsync.fulfilled, (state, action) => {
-      
-      state.IsLogged = true
+      // state.IsLogged = true
+
     }).addCase(loginAsync.fulfilled, (state, action) => {
-      
       state.token = action.payload.access
       localStorage.setItem("token", JSON.stringify(state.token))
       state.IsLogged = true
       state.loggedDev = {email_from_reg: ""}
+  
     
     }).addCase(logOutAsync.fulfilled, (state, action) => {
       state.token = ""
@@ -134,17 +134,16 @@ export const developerSlice = createSlice({
       // console.log(current(state))
 
     }).addCase(getAllDevAsync.fulfilled, (state, action) => {
-      
       state.developers = action.payload
+
     }).addCase(getMyDevProfileAsync.fulfilled, (state, action) => {
-      
       state.loggedDev = action.payload
+
     }).addCase(delDevAsync.fulfilled, (state, action) => {
-      
       state.developers.filter((x) => x.id !== action.payload)
       state.loggedDev = {email_from_reg:""}
+
     }).addCase(EditDevAsync.fulfilled, (state, action) => {
-      
       state.developers.filter((x) => x.email_from_reg !== action.payload.email_from_reg) 
       state.developers.push(action.payload)
     })

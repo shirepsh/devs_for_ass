@@ -5,6 +5,7 @@ import { getAllAssAsync, selectAssociation } from '../../slicers/developer/Assoc
 // import ListGroup from 'react-bootstrap/ListGroup';
 import { Col, Row } from 'react-bootstrap';
 import './Association.css'
+import { ImageSERVER } from '../../env';
 
 export const Association = () => {
 
@@ -23,7 +24,7 @@ export const Association = () => {
             <div className="row">
               <div className="col-md-4">
                 <div className="card" style={{width: "15rem"}}>
-                  <img style={{height:"250px"}} src={"http://127.0.0.1:8000" + ass.profile_picture} className="card-img-top" alt="..."></img>
+                  <img style={{height:"250px"}} src={ImageSERVER + ass.profile_picture} className="card-img-top" alt="..."></img>
                     <div className="card-body">
                       <h5 className="card-title">{ass.association_name}</h5>
                       <h6 className="card-subtitle mb-2 text-muted">{ass.location} {ass.email_from_reg}</h6>

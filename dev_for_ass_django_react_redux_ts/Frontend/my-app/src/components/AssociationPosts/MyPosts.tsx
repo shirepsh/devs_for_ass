@@ -7,6 +7,7 @@ import { deletePost, delPostAsync, getMyAssPostsAsync, selectLoggedAssPosts } fr
 import { Col, Row } from 'react-bootstrap';
 import { set } from 'immer/dist/internal'
 import { selectIsLogged } from '../../slicers/developer/developerSlice'
+import { ImageSERVER } from '../../env';
 
 
 
@@ -67,7 +68,7 @@ function MyPosts() {
                       <div className="card-body">
                         <p className="card-text">  {onePost.post_description}</p>
                         <h6 className="card-subtitle mb-2 text-muted">{onePost.contact_phone_number}</h6>
-                        <img src={"http://127.0.0.1:8000" + onePost.photo} className="card-img-top" alt="..."></img> <br /><br />
+                        <img src={ImageSERVER + onePost.photo} className="card-img-top" alt="..."></img> <br /><br />
                         <button className="btn btn-danger" onClick={() => handelDel(token, onePost.id)}>delete this post</button>
                       </div>
                     </div>

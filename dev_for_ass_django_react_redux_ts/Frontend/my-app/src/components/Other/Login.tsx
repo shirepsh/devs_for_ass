@@ -1,6 +1,6 @@
 // in this components you will ablr to do LOGIN and display the data of this user
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getEmailAsync, loginAsync, selectIsLogged } from "../../slicers/developer/developerSlice";
 import { Form, Button } from 'react-bootstrap'
 import { selectToken } from "../../slicers/developer/Association/associationSlice";
@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import axios from 'axios';
+import { MYSERVER } from "../../env";
 
 const Login = () => {
 
@@ -21,9 +22,34 @@ const Login = () => {
 
   if (isLogged) { dispatch(getEmailAsync(token)) }
 
+  // for navigate to the homepage after loggin
+  const navigate = useNavigate()
+
+  // // use effect to the user that logged in
+  // useEffect(() => {
+  //   if (isLogged) {
+  //     toast("Welcome, " + `${username} 🎉`, {
+  //       position: "top-center",
+  //       autoClose: 2000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       rtl: false,
+  //       pauseOnFocusLoss: true,
+  //       draggable: true,
+  //       pauseOnHover: true,
+  //       theme: "light"
+  //     });
+  //   }
+  // }, [isLogged]);
+
+
+  useEffect(() => {
+    if (isLogged) { navigate('/homePage') }
+  }, [isLogged])
+
   // tost about the diffrent errors
   const handleLogin = (username: any, password: any) => {
-    axios.post('http://127.0.0.1:8000/app/login', { username, password })
+    axios.post(MYSERVER + "login", { username, password })
       .then((response) => {
       })
       .catch((error) => {
@@ -39,22 +65,6 @@ const Login = () => {
         }
       });
   };
-
-  // use effect to the user that logged in
-  useEffect(() => {
-    if (isLogged) {
-      toast("Welcome, " + `${username} 🎉`, {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        rtl: false,
-        pauseOnFocusLoss: true,
-        draggable: true,
-        pauseOnHover: true,
-        theme: "light"
-      });
-    }},[isLogged]);
 
   return (
     <div>
@@ -88,11 +98,11 @@ const Login = () => {
 
       <h5 style={{ color: "wheat" }}>dont have an user? sign up!</h5>
       <Link to="/devReg">
-        <button className="btn btn-primary" style={{ marginRight: 20, color:"white"}}>register as developer</button>
+        <button className="btn btn-primary" style={{ marginRight: 20, color: "white" }}>register as developer</button>
       </Link>
 
       <Link to="/AssReg">
-        <button className="btn btn-primary" style={{color:"white"}}>register as association</button>
+        <button className="btn btn-primary" style={{ backgroundColor: "white" }}>register as association</button>
       </Link>
       <br /><br /><br /><br />
     </div>

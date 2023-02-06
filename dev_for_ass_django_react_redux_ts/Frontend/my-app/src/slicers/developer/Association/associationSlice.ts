@@ -78,14 +78,14 @@ export const associationSlice = createSlice({
   // the answers for the async functions
   extraReducers: (builder) => {
     builder.addCase(AssRegAsync.fulfilled, (state, action) => {
-      
-      state.IsAssLogged = true
+      // state.IsAssLogged = true
+
     }).addCase(loginAsync.fulfilled, (state, action) => {
-      
       state.token = action.payload.access
       localStorage.setItem("token", JSON.stringify(state.token))
       state.IsAssLogged = true
       state.loggedAss = {email_from_reg: ""}
+
     }).addCase(logOutAsync.fulfilled, (state, action) => {
       state.token = ""
       localStorage.setItem("token", JSON.stringify(state.token))
@@ -98,17 +98,16 @@ export const associationSlice = createSlice({
       // console.log(current(state))
 
     }).addCase(getAllAssAsync.fulfilled, (state, action) => {
-      
       state.Associations = action.payload
+
     }).addCase(getMyAssProfileAsync.fulfilled, (state, action) => {
-      
       state.loggedAss = action.payload
+
     }).addCase(delAssAsync.fulfilled, (state, action) => {
-      
       state.Associations.filter((x) => x.id !== action.payload)
       state.loggedAss = {}
+
     }).addCase(EditAssAsync.fulfilled, (state, action) => {
-      
       state.Associations.filter((x) => x.email_from_reg !== action.payload.email_from_reg) 
       state.Associations.push(action.payload)
     })
