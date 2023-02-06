@@ -8,6 +8,12 @@ This project was created with the aim of combining the different communities in 
   A user of a developer who can introduce himself to the market
 A user of an association that can introduce itself to the market and in addition create posts with its technological needs
 
+# importanat note:
+on .env file at REACT the server is RENDER
+if you want to change to yours local host computer Lines 3 and 8 should be removed from the comment && 
+Lines 12 and 15 put in a comment
+![Logo](server.png)
+
 # Technologies Used
 - Django
 - Django Rest Framework API
